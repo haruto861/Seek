@@ -1,0 +1,50 @@
+PODS:
+  - Kingfisher (5.15.4):
+    - Kingfisher/Core (= 5.15.4)
+  - Kingfisher/Core (5.15.4)
+  - KRActivityIndicatorView (3.0.7)
+  - KRProgressHUD (3.4.7):
+    - KRActivityIndicatorView (= 3.0.7)
+  - NCMB (3.1.0)
+  - NYXImagesKit (2.3)
+  - RAMAnimatedTabBarController (5.2.0)
+
+DEPENDENCIES:
+  - Kingfisher
+  - KRProgressHUD
+  - NCMB (from `https://github.com/NIFCLOUD-mbaas/ncmb_ios.git`)
+  - NYXImagesKit
+  - RAMAnimatedTabBarController (from `https://github.com/Ramotion/animated-tab-bar.git`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Kingfisher
+    - KRActivityIndicatorView
+    - KRProgressHUD
+    - NYXImagesKit
+
+EXTERNAL SOURCES:
+  NCMB:
+    :git: https://github.com/NIFCLOUD-mbaas/ncmb_ios.git
+  RAMAnimatedTabBarController:
+    :git: https://github.com/Ramotion/animated-tab-bar.git
+
+CHECKOUT OPTIONS:
+  NCMB:
+    :commit: f11ec347e410179817d72ac2be21f4578b11bc5f
+    :git: https://github.com/NIFCLOUD-mbaas/ncmb_ios.git
+  RAMAnimatedTabBarController:
+    :commit: 52174249fa7b296c0fce1114be8f34081b85ffc3
+    :git: https://github.com/Ramotion/animated-tab-bar.git
+
+SPEC CHECKSUMS:
+  Kingfisher: 657dc1077e5bbbfff864194c79f29e35b722d062
+  KRActivityIndicatorView: ad69e89c4ce40c986cf580595be4829dcad0e35a
+  KRProgressHUD: a248f0bc6c9c2aed40a37b76e03ffecc7f85c887
+  NCMB: c308972109137bf523ec1830bac16de6a31c25f4
+  NYXImagesKit: 8163e3335a40eaa173ca5bbbf81fafb57d3947eb
+  RAMAnimatedTabBarController: 6863a386e7ae2ab227cd60aa73ab8ff56cdacfdd
+
+PODFILE CHECKSUM: c393fde9165293a8faf5d6f9eaa7853a7fda099e
+
+COCOAPODS: 1.7.1
