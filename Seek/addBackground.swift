@@ -16,7 +16,7 @@ extension UIView {
 
         // スクリーンサイズにあわせてimageViewの配置
         let imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-        //imageViewに背景画像を表示
+        // imageViewに背景画像を表示
         imageViewBackground.image = UIImage(named: name)
 
         // 画像の表示モードを変更。
@@ -28,6 +28,3 @@ extension UIView {
         self.sendSubviewToBack(imageViewBackground)
     }
 }
-
-   
-

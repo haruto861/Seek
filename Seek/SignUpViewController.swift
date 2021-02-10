@@ -9,48 +9,25 @@ import UIKit
 import NCMB
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
-    
     @IBOutlet var userTdTextField: UITextField!
-    
     @IBOutlet var emailTextField: UITextField!
-    
     @IBOutlet var passwordTextField: UITextField!
-    
     @IBOutlet var confirmTextFied: UITextField!
-    
-//    @IBOutlet var SignUpButton: UIButton!
-    
-    
-    
-
-            
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        
         userTdTextField.delegate = self
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmTextFied.delegate = self
-    
-        
-
-        
     }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    
     }
-        
-    @IBAction func SignUp() {
+    @IBAction func signUp() {
         let user = NCMBUser()
-        
         if userTdTextField.text!.count <= 4 {
             print("文字数が足りません")
             return
@@ -77,15 +54,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 let ud = UserDefaults.standard
                 ud.setValue(true, forKey: "isLogin")
                 ud.synchronize()
-
-                
-                
-                
             }
-            
         }
-
-   
 }
-
 }

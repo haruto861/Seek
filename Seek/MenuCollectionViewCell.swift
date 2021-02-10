@@ -11,11 +11,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet var menuNameLabel: UILabel!
     @IBOutlet var menuImageView: UIImageView!
-    
-
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
-
 }

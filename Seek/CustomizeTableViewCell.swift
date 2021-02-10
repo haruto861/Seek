@@ -8,24 +8,19 @@
 import UIKit
 
 class CustomizeTableViewCell: UITableViewCell {
-    
     @IBOutlet var customizeImageView: UIImageView!
     @IBOutlet var customizeNameLabel: UILabel!
     @IBOutlet var customCalorieLabel: UILabel!
     @IBOutlet var customPriceLabel: UILabel!
     
-
+    @IBOutlet weak var mainBackground: UIView!
+    @IBOutlet weak var shadowLayer: UIView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-      
-        
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
 }

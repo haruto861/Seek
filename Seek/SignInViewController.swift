@@ -9,30 +9,19 @@ import UIKit
 import NCMB
 
 class SignInViewController: UIViewController, UITextFieldDelegate {
-    
     @IBOutlet var userIdTextField: UITextField!
-    
     @IBOutlet var passwordTextField: UITextField!
-    
-    
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.view.addBackground(name: "backgroundImage@2x.jpg")
-        
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            self.navigationController!.navigationBar.shadowImage = UIImage()
-
+        self.navigationController!.navigationBar.shadowImage = UIImage()
         userIdTextField.delegate = self
         passwordTextField.delegate = self
     }
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-    
+    }    
     @IBAction func signIn() {
         if userIdTextField.text!.count > 0 && passwordTextField.text!.count > 0 {
             NCMBUser.logInWithUsername(inBackground: userIdTextField.text!, password: passwordTextField.text!) { (user, error) in
@@ -47,16 +36,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                     let ud = UserDefaults.standard
                     ud.setValue(true, forKey: "isLogin")
                     ud.synchronize()
-                    
-                    
                 }
         }
       }
     }
-//
-//    @IBAction func forgerPassword() {
-//
-//    }
-    
-   
 }

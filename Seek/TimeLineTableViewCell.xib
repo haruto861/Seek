@@ -59,7 +59,7 @@
                         <rect key="frame" x="135" y="68" width="123" height="80"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="xJ8-NX-MFl">
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="xJ8-NX-MFl">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -112,14 +112,14 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ETV-DE-GIN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="AbO-bE-Rub"/>
-                    <constraint firstItem="ETV-DE-GIN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="KRc-uX-dN7"/>
-                    <constraint firstAttribute="trailing" secondItem="AYc-xG-mL3" secondAttribute="trailing" constant="5" id="a9j-PT-LEo"/>
-                    <constraint firstAttribute="trailing" secondItem="ETV-DE-GIN" secondAttribute="trailing" constant="5" id="cJJ-vY-doR"/>
-                    <constraint firstAttribute="bottom" secondItem="AYc-xG-mL3" secondAttribute="bottom" constant="5" id="cK9-6z-lwC"/>
-                    <constraint firstItem="AYc-xG-mL3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="mGU-Yb-jC9"/>
-                    <constraint firstAttribute="bottom" secondItem="ETV-DE-GIN" secondAttribute="bottom" constant="5" id="nzJ-7L-Bcm"/>
-                    <constraint firstItem="AYc-xG-mL3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="r24-SM-fyj"/>
+                    <constraint firstItem="ETV-DE-GIN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="3X3-p8-Kvp"/>
+                    <constraint firstItem="AYc-xG-mL3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="FW8-RI-X2s"/>
+                    <constraint firstAttribute="bottom" secondItem="AYc-xG-mL3" secondAttribute="bottom" constant="5" id="QNx-e9-vM2"/>
+                    <constraint firstAttribute="bottom" secondItem="ETV-DE-GIN" secondAttribute="bottom" constant="5" id="UlJ-g5-sJU"/>
+                    <constraint firstAttribute="trailing" secondItem="ETV-DE-GIN" secondAttribute="trailing" constant="5" id="Vbn-fP-Ppx"/>
+                    <constraint firstAttribute="trailing" secondItem="AYc-xG-mL3" secondAttribute="trailing" constant="5" id="cQu-5y-u2P"/>
+                    <constraint firstItem="ETV-DE-GIN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="fv3-xQ-9zI"/>
+                    <constraint firstItem="AYc-xG-mL3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="r02-Xq-2aR"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

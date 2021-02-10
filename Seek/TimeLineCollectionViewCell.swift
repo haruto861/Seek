@@ -8,16 +8,10 @@
 import UIKit
 
 class TimeLineCollectionViewCell: UICollectionViewCell {
-    
-    
     @IBOutlet var selectedCusomizeLabel: UILabel!
     @IBOutlet var selectedCustomizeImage: UIImageView!
-
-   
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }

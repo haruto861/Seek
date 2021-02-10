@@ -11,12 +11,9 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        UITabBar.appearance().backgroundImage = UIImage.init(named: "marble@2x.jpg")
         // タップしたときの色を変更
         tabBar.tintColor = UIColor.black
-        
-        
+                
     }
    
 }
