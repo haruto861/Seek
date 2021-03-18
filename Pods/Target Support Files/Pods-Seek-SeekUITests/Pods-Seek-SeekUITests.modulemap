@@ -1,6 +1,0 @@
-framework module Pods_Seek_SeekUITests {
-  umbrella header "Pods-Seek-SeekUITests-umbrella.h"
-
-  export *
-  module * { export * }
-}
