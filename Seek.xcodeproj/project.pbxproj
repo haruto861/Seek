@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		F1117F65258E38A90091F289 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1117F64258E38A90091F289 /* ShadowView.swift */; };
+		F12B026226034522003314D7 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B026126034522003314D7 /* Menu.swift */; };
 		F13CCD6B25766E8000E3A659 /* appIcon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCD6A25766E8000E3A659 /* appIcon@2x.jpg */; };
 		F13CCD7025766FCE00E3A659 /* backgroundImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCD6F25766FCE00E3A659 /* backgroundImage@2x.jpg */; };
 		F13CCE6F257E562900E3A659 /* whippedcream@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCE6E257E562900E3A659 /* whippedcream@2x.jpg */; };
@@ -129,6 +130,7 @@
 		CEF87D7F2C568D42CD1E2B25 /* Pods-Seek-SeekUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seek-SeekUITests.release.xcconfig"; path = "Target Support Files/Pods-Seek-SeekUITests/Pods-Seek-SeekUITests.release.xcconfig"; sourceTree = "<group>"; };
 		D959E674D50ABC1CD7587CE9 /* Pods-Seek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seek.debug.xcconfig"; path = "Target Support Files/Pods-Seek/Pods-Seek.debug.xcconfig"; sourceTree = "<group>"; };
 		F1117F64258E38A90091F289 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
+		F12B026126034522003314D7 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		F13CCD6A25766E8000E3A659 /* appIcon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "appIcon@2x.jpg"; sourceTree = "<group>"; };
 		F13CCD6F25766FCE00E3A659 /* backgroundImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "backgroundImage@2x.jpg"; sourceTree = "<group>"; };
 		F13CCE6E257E562900E3A659 /* whippedcream@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "whippedcream@2x.jpg"; sourceTree = "<group>"; };
@@ -333,6 +335,7 @@
 				F1B3E5D22537BA17002A3557 /* MenuCollectionViewController.swift */,
 				F1B3E5EC2537CE46002A3557 /* MenuCollectionViewCell.swift */,
 				F1B3E5ED2537CE46002A3557 /* MenuCollectionViewCell.xib */,
+				F12B026126034522003314D7 /* Menu.swift */,
 				F1B4816E253D565000D61A95 /* DetailViewController.swift */,
 				F1B4817B253D600600D61A95 /* CustomizeViewController.swift */,
 				F1B48186253D609900D61A95 /* CustomizeTableViewCell.xib */,
@@ -738,6 +741,7 @@
 				F1B3E53525303DFC002A3557 /* SceneDelegate.swift in Sources */,
 				F13EE195254A955500323EBF /* TimeLineViewController.swift in Sources */,
 				F14E650E255AE21E0026111E /* Post.swift in Sources */,
+				F12B026226034522003314D7 /* Menu.swift in Sources */,
 				F17CF71A25669E7500AAC09A /* addBackground.swift in Sources */,
 				F1B3E5A125307C99002A3557 /* SignUpViewController.swift in Sources */,
 				F1B3E5EE2537CE46002A3557 /* MenuCollectionViewCell.swift in Sources */,
