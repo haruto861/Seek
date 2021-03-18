@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		F1117F65258E38A90091F289 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1117F64258E38A90091F289 /* ShadowView.swift */; };
 		F12B026226034522003314D7 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B026126034522003314D7 /* Menu.swift */; };
+		F12B027926037B93003314D7 /* Customize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B027826037B93003314D7 /* Customize.swift */; };
 		F13CCD6B25766E8000E3A659 /* appIcon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCD6A25766E8000E3A659 /* appIcon@2x.jpg */; };
 		F13CCD7025766FCE00E3A659 /* backgroundImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCD6F25766FCE00E3A659 /* backgroundImage@2x.jpg */; };
 		F13CCE6F257E562900E3A659 /* whippedcream@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCE6E257E562900E3A659 /* whippedcream@2x.jpg */; };
@@ -131,6 +132,7 @@
 		D959E674D50ABC1CD7587CE9 /* Pods-Seek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Seek.debug.xcconfig"; path = "Target Support Files/Pods-Seek/Pods-Seek.debug.xcconfig"; sourceTree = "<group>"; };
 		F1117F64258E38A90091F289 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		F12B026126034522003314D7 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
+		F12B027826037B93003314D7 /* Customize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customize.swift; sourceTree = "<group>"; };
 		F13CCD6A25766E8000E3A659 /* appIcon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "appIcon@2x.jpg"; sourceTree = "<group>"; };
 		F13CCD6F25766FCE00E3A659 /* backgroundImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "backgroundImage@2x.jpg"; sourceTree = "<group>"; };
 		F13CCE6E257E562900E3A659 /* whippedcream@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "whippedcream@2x.jpg"; sourceTree = "<group>"; };
@@ -260,6 +262,79 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		F12B027026036EFE003314D7 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F15113F02566C58600C17F95 /* TabBarViewController.swift */,
+				F1B3E59B25307C84002A3557 /* SignInViewController.swift */,
+				F1B3E5A025307C99002A3557 /* SignUpViewController.swift */,
+				F1B3E5AE253191A9002A3557 /* UserPageViewController.swift */,
+				F1B3E5C02531B4B6002A3557 /* EditUserViewController.swift */,
+				F13EE194254A955400323EBF /* TimeLineViewController.swift */,
+				F1B3E5D22537BA17002A3557 /* MenuCollectionViewController.swift */,
+				F1B4816E253D565000D61A95 /* DetailViewController.swift */,
+				F1B4817B253D600600D61A95 /* CustomizeViewController.swift */,
+				F1C7001225426DEE000F9082 /* PostViewController.swift */,
+				F1879C6E2574D14A00FF7C50 /* LaunchScreenViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		F12B027126036F3E003314D7 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				F1B3E53825303DFC002A3557 /* Main.storyboard */,
+				F1B3E53D25303E01002A3557 /* LaunchScreen.storyboard */,
+				F1B3E58E253071F3002A3557 /* SignIn.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		F12B027226036F75003314D7 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				F14E655F2562C7730026111E /* TimeLineCollectionViewCell.swift */,
+				F13EE199254A956D00323EBF /* TimeLineTableViewCell.swift */,
+				F1B48185253D609900D61A95 /* CustomizeTableViewCell.swift */,
+				F1B3E5EC2537CE46002A3557 /* MenuCollectionViewCell.swift */,
+				F13EE1832549D29600323EBF /* PostTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		F12B027326036FAE003314D7 /* Xibs */ = {
+			isa = PBXGroup;
+			children = (
+				F13EE19A254A956D00323EBF /* TimeLineTableViewCell.xib */,
+				F1B3E5ED2537CE46002A3557 /* MenuCollectionViewCell.xib */,
+				F1B48186253D609900D61A95 /* CustomizeTableViewCell.xib */,
+				F13EE1842549D29600323EBF /* PostTableViewCell.xib */,
+				F14E65602562C7730026111E /* TimeLineCollectionViewCell.xib */,
+			);
+			path = Xibs;
+			sourceTree = "<group>";
+		};
+		F12B027426037047003314D7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				F14E650D255AE21E0026111E /* Post.swift */,
+				F14E6512255AEB7A0026111E /* User.swift */,
+				F12B026126034522003314D7 /* Menu.swift */,
+				F12B027826037B93003314D7 /* Customize.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		F12B027526037060003314D7 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F1B3E5BB2531AEBD002A3557 /* Extension.swift */,
+				F17CF71925669E7500AAC09A /* addBackground.swift */,
+				F1117F64258E38A90091F289 /* ShadowView.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		F13EE1A0254E81B300323EBF /* temporaryImages */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,38 +394,14 @@
 		F1B3E53125303DFC002A3557 /* Seek */ = {
 			isa = PBXGroup;
 			children = (
+				F12B027526037060003314D7 /* Extensions */,
+				F12B027426037047003314D7 /* Models */,
+				F12B027326036FAE003314D7 /* Xibs */,
+				F12B027226036F75003314D7 /* Cells */,
+				F12B027126036F3E003314D7 /* Storyboards */,
+				F12B027026036EFE003314D7 /* Controllers */,
 				F1B3E53225303DFC002A3557 /* AppDelegate.swift */,
-				F15113F02566C58600C17F95 /* TabBarViewController.swift */,
 				F1B3E53425303DFC002A3557 /* SceneDelegate.swift */,
-				F1B3E5C02531B4B6002A3557 /* EditUserViewController.swift */,
-				F13EE194254A955400323EBF /* TimeLineViewController.swift */,
-				F1B48185253D609900D61A95 /* CustomizeTableViewCell.swift */,
-				F13EE199254A956D00323EBF /* TimeLineTableViewCell.swift */,
-				F13EE19A254A956D00323EBF /* TimeLineTableViewCell.xib */,
-				F1117F64258E38A90091F289 /* ShadowView.swift */,
-				F14E655F2562C7730026111E /* TimeLineCollectionViewCell.swift */,
-				F14E65602562C7730026111E /* TimeLineCollectionViewCell.xib */,
-				F14E650D255AE21E0026111E /* Post.swift */,
-				F14E6512255AEB7A0026111E /* User.swift */,
-				F1B3E5D22537BA17002A3557 /* MenuCollectionViewController.swift */,
-				F1B3E5EC2537CE46002A3557 /* MenuCollectionViewCell.swift */,
-				F1B3E5ED2537CE46002A3557 /* MenuCollectionViewCell.xib */,
-				F12B026126034522003314D7 /* Menu.swift */,
-				F1B4816E253D565000D61A95 /* DetailViewController.swift */,
-				F1B4817B253D600600D61A95 /* CustomizeViewController.swift */,
-				F1B48186253D609900D61A95 /* CustomizeTableViewCell.xib */,
-				F1C7001225426DEE000F9082 /* PostViewController.swift */,
-				F13EE1832549D29600323EBF /* PostTableViewCell.swift */,
-				F13EE1842549D29600323EBF /* PostTableViewCell.xib */,
-				F1B3E59B25307C84002A3557 /* SignInViewController.swift */,
-				F1B3E5A025307C99002A3557 /* SignUpViewController.swift */,
-				F1B3E5AE253191A9002A3557 /* UserPageViewController.swift */,
-				F17CF71925669E7500AAC09A /* addBackground.swift */,
-				F1B3E5BB2531AEBD002A3557 /* Extension.swift */,
-				F1879C6E2574D14A00FF7C50 /* LaunchScreenViewController.swift */,
-				F1B3E58E253071F3002A3557 /* SignIn.storyboard */,
-				F1B3E53825303DFC002A3557 /* Main.storyboard */,
-				F1B3E53D25303E01002A3557 /* LaunchScreen.storyboard */,
 				F13CCD6A25766E8000E3A659 /* appIcon@2x.jpg */,
 				F13CCD6F25766FCE00E3A659 /* backgroundImage@2x.jpg */,
 				F1B3E53B25303E01002A3557 /* Assets.xcassets */,
@@ -735,6 +786,7 @@
 				F1B3E5BC2531AEBD002A3557 /* Extension.swift in Sources */,
 				F1B3E5C12531B4B7002A3557 /* EditUserViewController.swift in Sources */,
 				F1117F65258E38A90091F289 /* ShadowView.swift in Sources */,
+				F12B027926037B93003314D7 /* Customize.swift in Sources */,
 				F1B3E53325303DFC002A3557 /* AppDelegate.swift in Sources */,
 				F13EE19B254A956D00323EBF /* TimeLineTableViewCell.swift in Sources */,
 				F1B48187253D609900D61A95 /* CustomizeTableViewCell.swift in Sources */,
