@@ -52,7 +52,6 @@
 		F1879C6F2574D14A00FF7C50 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1879C6E2574D14A00FF7C50 /* LaunchScreenViewController.swift */; };
 		F1B3E53325303DFC002A3557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B3E53225303DFC002A3557 /* AppDelegate.swift */; };
 		F1B3E53525303DFC002A3557 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B3E53425303DFC002A3557 /* SceneDelegate.swift */; };
-		F1B3E53725303DFC002A3557 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B3E53625303DFC002A3557 /* ViewController.swift */; };
 		F1B3E53A25303DFC002A3557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B3E53825303DFC002A3557 /* Main.storyboard */; };
 		F1B3E53C25303E01002A3557 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F1B3E53B25303E01002A3557 /* Assets.xcassets */; };
 		F1B3E53F25303E01002A3557 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B3E53D25303E01002A3557 /* LaunchScreen.storyboard */; };
@@ -175,7 +174,6 @@
 		F1B3E52F25303DFC002A3557 /* Seek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3E53225303DFC002A3557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1B3E53425303DFC002A3557 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F1B3E53625303DFC002A3557 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F1B3E53925303DFC002A3557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F1B3E53B25303E01002A3557 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F1B3E53E25303E01002A3557 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -323,7 +321,6 @@
 				F15113F02566C58600C17F95 /* TabBarViewController.swift */,
 				F1B3E53425303DFC002A3557 /* SceneDelegate.swift */,
 				F1B3E5C02531B4B6002A3557 /* EditUserViewController.swift */,
-				F1B3E53625303DFC002A3557 /* ViewController.swift */,
 				F13EE194254A955400323EBF /* TimeLineViewController.swift */,
 				F1B48185253D609900D61A95 /* CustomizeTableViewCell.swift */,
 				F13EE199254A956D00323EBF /* TimeLineTableViewCell.swift */,
@@ -734,7 +731,6 @@
 				F1B3E59C25307C84002A3557 /* SignInViewController.swift in Sources */,
 				F1B3E5BC2531AEBD002A3557 /* Extension.swift in Sources */,
 				F1B3E5C12531B4B7002A3557 /* EditUserViewController.swift in Sources */,
-				F1B3E53725303DFC002A3557 /* ViewController.swift in Sources */,
 				F1117F65258E38A90091F289 /* ShadowView.swift in Sources */,
 				F1B3E53325303DFC002A3557 /* AppDelegate.swift in Sources */,
 				F13EE19B254A956D00323EBF /* TimeLineTableViewCell.swift in Sources */,

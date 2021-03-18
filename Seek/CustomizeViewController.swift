@@ -16,6 +16,7 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
     var customizeImages = [UIImage(named: "espressoshot@2x.jpg"), UIImage(named: "syrup@2x.jpg"), UIImage(named: "syrup@2x.jpg"), UIImage(named: "syrup@2x.jpg"), UIImage(named: "syrup@2x.jpg"), UIImage(named: "syrup@2x.jpg"), UIImage(named: "syrup@2x.jpg"), UIImage(named: "syrup@2x.jpg"), UIImage(named: "whippedcream@2x.jpg"), UIImage(named: "chocolatechip@2x.jpg"), UIImage(named: "sources@2x.jpg"), UIImage(named: "sources@2x.jpg"), UIImage(named: "citrus@2x.jpg"),UIImage(named: "sources@2x.jpg")]
     @IBOutlet var customizeTableView: UITableView!
     var choicedIndex:IndexPath!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,7 +27,6 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
         let nib = UINib(nibName: "CustomizeTableViewCell", bundle: Bundle.main)
         customizeTableView.register(nib, forCellReuseIdentifier: "CustomizeCell")
         // 複数選択可にする
-        //  参照 ( https://qiita.com/Shotaro_Mori_/items/130d10ae4453b14f2368 )
         customizeTableView.allowsMultipleSelection = true
     }
     // セルの個数
@@ -35,7 +35,7 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
     }
     // セルの表示内容
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    // idをつけたセルの取得
+
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomizeCell") as? CustomizeTableViewCell else {
             abort()
         }
@@ -46,10 +46,10 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
         return cell
         
     }
-    // セルが選択されたときに呼ばれる
-    // *delegateを移譲していないと選択などができないので気を付ける
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                   let cell = tableView.cellForRow(at:indexPath)
+        let cell = tableView.cellForRow(at:indexPath)
+        cell?.accessoryType = .checkmark
         let ud = UserDefaults.standard
         // データを入れる空の配列を定義 複数のデータを入れたいから配列で定義する
         var array = [String]()
@@ -62,9 +62,10 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
         // 配列に値を追加
         array.append(selectedCustomize)
         UserDefaults.standard.set(array, forKey: "choice")
-    // セル選択解除後に呼ばれる
+    }
+
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-             print("deselect - \(indexPath)")
+
         let cell = tableView.cellForRow(at:indexPath)
         cell?.accessoryType = .none
         var array = [String]()
@@ -82,25 +83,8 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
         } else {
         }
     }
-    func loadData() {
-            let query = NCMBQuery(className: "customize")
-            query?.findObjectsInBackground({ (results, error) in
-                if error != nil {
-                    print(error)
-                } else {
-                    print(results)
-                    let toppings = results as? [NCMBObject] ?? []
-                    for text in toppings {
-                        let selectedCustomize = text.object(forKey: "customize") as? String ?? ""
-                        // カスタマイズの全てのデータ
-                        print(selectedCustomize)
-                    }
-                }
-            })
-        }
-    // 次の画面に遷移
+
         func toPost() {
         performSegue(withIdentifier: "toPost", sender: nil)
-    }
     }
 }

@@ -18,8 +18,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     
         override func viewDidLoad() {
         super.viewDidLoad()
-        loadData()
-        // tabbarを半透明にするコード
+       getMenuData()
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
         menuCollectionView.delegate = self
@@ -72,7 +71,7 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
             detailViewController.passedData = drinks[selectedIndex.row]
         }
     }
-    func loadData() {
+    func getMenuData() {
         // menuクラスを検索するNCMBQueryを作成
           let query = NCMBQuery(className: "menu")
               query?.findObjectsInBackground({ (results, error) in

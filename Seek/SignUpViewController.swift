@@ -22,10 +22,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
         confirmTextFied.delegate = self
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
+
     @IBAction func signUp() {
         let user = NCMBUser()
         if userTdTextField.text!.count <= 4 {

@@ -65,10 +65,7 @@ class DetailViewController: UIViewController {
         let ud = UserDefaults.standard
         // udのselecrtedキーの中身(コレクションビューで選択された物)を呼び出す
         passedMenu = ud.string(forKey: "selected")
-
-
         shadowView()
-        
         loadData()
     }
     @IBAction func back() {
@@ -219,6 +216,7 @@ class DetailViewController: UIViewController {
             ud.synchronize()
             }
         if switch4.isOn {
+            // アーモンドミルク
             switch segmentedControl4.selectedSegmentIndex {
             case 0:
                 let short: Int =  passedCalorie[12]
@@ -252,6 +250,7 @@ class DetailViewController: UIViewController {
             ud.synchronize()
         }
         if switch5.isOn {
+            // ソイミルク
             switch segmentedControl5.selectedSegmentIndex {
             case 0:
                 let short: Int =  passedCalorie[12]
@@ -285,6 +284,11 @@ class DetailViewController: UIViewController {
             UserDefaults.standard.setValue(menuPrice, forKey: "menuPrice")
             ud.synchronize()
         }
+        if switch1.isOn == false && switch2.isOn == false && switch3.isOn == false && switch4.isOn == false && switch5.isOn == false  {
+            label1.text = ""
+            label2.text = ""
+            self.alertPresent()
+        }
     }
     private func shadowView() {
         view2.layer.shadowOpacity = 0.5 // 影の濃さを指定
@@ -304,7 +308,7 @@ class DetailViewController: UIViewController {
         
     }
     private func alertPresent() {
-        let alert = UIAlertController(title: "エラー", message: "ミルク・サイズを選択してください", preferredStyle: .alert)
+        let alert = UIAlertController(title: "エラー", message: "ミルク・サイズを選択してください。\nミルク不使用の場合は”MIlK”でサイズを選んでください。", preferredStyle: .alert)
         // 特に行う動作はないのでhandlerはnil
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
