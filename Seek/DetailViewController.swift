@@ -54,7 +54,7 @@ class DetailViewController: UIViewController {
     var passedCalorie = [Int]()
     var passedPrice = [Int]()
     //  データの受け皿を作成
-    var passedData: NCMBObject!
+    var passedData: String!
     var passedMenu: String!
     // カロリー
     var menuCalorie = 0
@@ -68,40 +68,34 @@ class DetailViewController: UIViewController {
         shadowView()
         loadData()
     }
+
     @IBAction func back() {
         // 戻るコード
         self.dismiss(animated: true, completion: nil)
     }
+
     @IBAction func toCustomize() {
         // idetifierが"toDetail"のsegueを使って画面遷移する関数
         performSegue(withIdentifier: "toCustomize", sender: nil)
     }
+
     func loadData() {
         KRProgressHUD.show()
-        // menuクラスを検索するNCMBQueryを作成
-          let query = NCMBQuery(className: "menu")
-        // menuクラスの選択され行のデータを検索
-          query?.whereKey("menu", equalTo: passedMenu as? String ?? "")
-              // 列のデータを取得
+        let query = NCMBQuery(className: "menu")
+        query?.whereKey("menu", equalTo: passedMenu as? String ?? "")
         query?.findObjectsInBackground({ [self] (results, error) in
                   if error != nil {
-                      print(error)
                  } else {
-                    // 取り出した結果(results)をNCMB型にダウンキャストして変数に代入
                     // データは一つしかないが、形式的には配列
                     let menus = results as? [NCMBObject] ?? []
-                    // 配列の一つ目のデータを取り出す
                     let menu = menus[0]
                     print(menu)
                     self.passedPrice = menu.object(forKey: "price") as? [Int] ?? []
                     self.passedCalorie = menu.object(forKey: "calorie") as? [Int] ?? []
                     self.passedMenuNameLabel.text = menu.object(forKey: "menu") as? String ?? ""
                     let imageUrl = menu.object(forKey: "image") as? String ?? ""
-                        print(imageUrl)
-                         // urlを変換
-                        self.passedMenuImage.kf.setImage(with:URL(string: imageUrl))
-                        // 画像を読み込むための処理
-                        KRProgressHUD.dismiss()
+                    self.passedMenuImage.kf.setImage(with:URL(string: imageUrl))
+                    KRProgressHUD.dismiss()
                   }
               })
     }
@@ -307,12 +301,14 @@ class DetailViewController: UIViewController {
         button.layer.cornerRadius = 8.0
         
     }
+    
     private func alertPresent() {
         let alert = UIAlertController(title: "エラー", message: "ミルク・サイズを選択してください。\nミルク不使用の場合は”MIlK”でサイズを選んでください。", preferredStyle: .alert)
         // 特に行う動作はないのでhandlerはnil
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
+
     private func saveData() {
         let ud = UserDefaults.standard
         UserDefaults.standard.setValue(menuCalorie, forKey: "menuCalorie")

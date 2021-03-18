@@ -11,15 +11,12 @@ class Menu: NSObject {
 
     var menuName: String!
     var menuImageUrl: String!
-    var menuCalorie: Int!
-    var menuPrice: Int!
 
-    init(menuName: String, menuImageUrl: String, menuCalorie: Int, menuPrice: Int) {
+    init(menuName: String, menuImageUrl: String) {
         self.menuName = menuName
         self.menuImageUrl = menuImageUrl
-        self.menuCalorie = menuCalorie
-        self.menuPrice = menuPrice
-        
+
+
     }
     
 }
