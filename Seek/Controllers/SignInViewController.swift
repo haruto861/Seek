@@ -18,15 +18,16 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
         userIdTextField.delegate = self
         passwordTextField.delegate = self
     }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }    
+    }
+
     @IBAction func signIn() {
         if userIdTextField.text!.count > 0 && passwordTextField.text!.count > 0 {
             NCMBUser.logInWithUsername(inBackground: userIdTextField.text!, password: passwordTextField.text!) { (user, error) in
                 if error != nil {
-                    print("error")
                 } else {
                     // 登録成功
                     let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)

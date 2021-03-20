@@ -32,7 +32,7 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
         timeLineTableView.rowHeight = 188
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController!.navigationBar.shadowImage = UIImage()
-        userImageview.layer.cornerRadius = userImageview.bounds.width / 1.69
+        userImageview.layer.cornerRadius = 40
         userImageview.layer.masksToBounds = true
         self.timeLineTableView.dataSource = self
         self.timeLineTableView.delegate = self
