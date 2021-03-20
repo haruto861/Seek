@@ -10,58 +10,36 @@ import NCMB
 import Kingfisher
 import KRProgressHUD
 class DetailViewController: UIViewController {
-    // 通常ミルク
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    // 低脂肪ミルク
     @IBOutlet weak var segmentedControl2: UISegmentedControl!
-    // 無脂肪ミルク
     @IBOutlet weak var segmentedControl3: UISegmentedControl!
-    // アーモンドミルク
     @IBOutlet weak var segmentedControl4: UISegmentedControl!
-    // ソイミルク
     @IBOutlet weak var segmentedControl5: UISegmentedControl!
-    // とりあえずラベル
     @IBOutlet weak var label1:UILabel!
     @IBOutlet weak var label2:UILabel!
-
-    // ミルク変更スイッチ
-    // 通常ミルク
     @IBOutlet weak var switch1: UISwitch!
-    // 低脂肪ミルク
     @IBOutlet weak var switch2: UISwitch!
-    // 無脂肪ミルク
     @IBOutlet weak var switch3: UISwitch!
-    // アーモンドミルク
     @IBOutlet weak var switch4: UISwitch!
-    // ソイミルク
     @IBOutlet weak var switch5: UISwitch!
-
-    // ミルク選択の枠
     @IBOutlet weak var view2: UIView!
-    // メニューの枠
     @IBOutlet var view3: UIView!
-    // カロリー・価格
     @IBOutlet weak var view4: UIView!
     @IBOutlet weak var button: UIButton!
     
     @IBOutlet var passedMenuImage: UIImageView!
-    // 画像データの受け皿
     var selectedImage: UIImage!
     @IBOutlet var passedMenuNameLabel: UILabel!
     @IBOutlet var passedCalorieLabel: UILabel!
     @IBOutlet var passedPriceLabel: UILabel!
-    // DBからカロリー、価格を受け取る
     var passedCalorie = [Int]()
     var passedPrice = [Int]()
-    //  データの受け皿を作成
     var passedData: String!
     var passedMenu: String!
-    // カロリー
     var menuCalorie = 0
     var menuPrice = 0
     override func viewDidLoad() {
         super.viewDidLoad()
-        // ud領域を確保
         let ud = UserDefaults.standard
         // udのselecrtedキーの中身(コレクションビューで選択された物)を呼び出す
         passedMenu = ud.string(forKey: "selected")
@@ -304,7 +282,6 @@ class DetailViewController: UIViewController {
     
     private func alertPresent() {
         let alert = UIAlertController(title: "エラー", message: "ミルク・サイズを選択してください。\nミルク不使用の場合は”MIlK”でサイズを選んでください。", preferredStyle: .alert)
-        // 特に行う動作はないのでhandlerはnil
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

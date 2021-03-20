@@ -36,7 +36,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postDataTableView.rowHeight = 70
         postDataTableView.delegate = self
         postDataTableView.dataSource = self
-        // nibの登録
         let nib = UINib(nibName: "PostTableViewCell", bundle: Bundle.main)
         postDataTableView.register(nib, forCellReuseIdentifier: "postCell")
         // ud領域を確保
@@ -55,17 +54,15 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         let ud3 = UserDefaults.standard
         menuSumCalorie += ud.integer(forKey: "menuCalorie")
         menuSumPrice += ud.integer(forKey: "menuPrice")
-        print(menuSumCalorie)
-        print(menuSumPrice)
 
         loadData()
         loadData2()
     }
-    // セルの個数
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selctedToppings.count
     }
-    // セルの内容
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell") as? PostTableViewCell else {
             abort()
@@ -73,6 +70,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         cell.passedCustomizeLabel.text = selctedToppings[indexPath.row]
         return cell
     }
+
     func loadData() {
         let query = NCMBQuery(className: "customize")
         query?.whereKey("customize", containedIn: selectedItems)
@@ -81,7 +79,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 let toppings = results as? [NCMBObject] ?? []
                 for text in toppings {
-                    print(text)
                     let selectedCustomize = text.object(forKey: "customize") as? String ?? ""
                     let customImageUrl = text.object(forKey: "image") as? String ?? ""
                     // for文を回して選択するごとに値を足していく
@@ -102,8 +99,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     func loadData2() {
         KRProgressHUD.show()
-          let query = NCMBQuery(className: "menu")
-          query?.whereKey("menu", equalTo: passedMenu2 as? String ?? "")
+        let query = NCMBQuery(className: "menu")
+        query?.whereKey("menu", equalTo: passedMenu2 as? String ?? "")
         query?.findObjectsInBackground({ [self] (results, error) in
                   if error != nil {
                  } else {
@@ -142,7 +139,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction private func sharePost() {
         KRProgressHUD.show()
         let postObject = NCMBObject(className: "post")
-        // 配列からデータを取り出す
         let menuName = self.menuNames[0]
         let menuImage = self.menuImages[0]
         postObject?.setObject(menuName, forKey: "menuName")

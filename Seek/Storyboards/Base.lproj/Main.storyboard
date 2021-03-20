@@ -316,28 +316,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w1J-LV-g1e">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w1J-LV-g1e">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="CustomizeCell" rowHeight="76" id="r5I-hE-XI5" customClass="CustomizeTableViewCell" customModule="Seek" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="76"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r5I-hE-XI5" id="exY-J3-ARx">
-                                            <rect key="frame" x="0.0" y="0.0" width="370" height="76"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="c6T-rP-Vzf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="w1J-LV-g1e" firstAttribute="leading" secondItem="c6T-rP-Vzf" secondAttribute="leading" id="8Jd-PT-IkI"/>
-                            <constraint firstItem="w1J-LV-g1e" firstAttribute="trailing" secondItem="c6T-rP-Vzf" secondAttribute="trailing" id="I6Y-MI-zal"/>
-                            <constraint firstAttribute="bottom" secondItem="w1J-LV-g1e" secondAttribute="bottom" id="OeQ-oJ-037"/>
-                            <constraint firstItem="w1J-LV-g1e" firstAttribute="top" secondItem="8Wg-bK-WcY" secondAttribute="top" id="SeT-Rz-Czi"/>
+                            <constraint firstAttribute="bottom" secondItem="w1J-LV-g1e" secondAttribute="bottom" id="GaG-H9-stY"/>
+                            <constraint firstItem="w1J-LV-g1e" firstAttribute="trailing" secondItem="c6T-rP-Vzf" secondAttribute="trailing" id="JJD-pw-fy4"/>
+                            <constraint firstItem="w1J-LV-g1e" firstAttribute="leading" secondItem="c6T-rP-Vzf" secondAttribute="leading" id="ZPG-mw-X7J"/>
+                            <constraint firstItem="w1J-LV-g1e" firstAttribute="top" secondItem="8Wg-bK-WcY" secondAttribute="top" id="wIw-L2-XcE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="HP9-EY-sZU">
@@ -354,7 +344,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGJ-z0-FPO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3053.5999999999999" y="1058.3208395802101"/>
+            <point key="canvasLocation" x="3052.1739130434785" y="1058.0357142857142"/>
         </scene>
         <!--Post View Controller-->
         <scene sceneID="eTf-K0-ZLa">
