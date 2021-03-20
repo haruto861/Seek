@@ -151,8 +151,6 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
                 reportButton.backgroundColor = UIColor.red
                 let blockButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "ブロック") { (action, index) -> Void in
-                    // self.comments.remove(at: indexPath.row)
-                    // tableView.deleteRows(at: [indexPath], with: .fade)
                     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                     let blockAction = UIAlertAction(title: "ブロックする", style: .destructive) { (action) in
                         KRProgressHUD.showSuccess(withMessage: "このユーザーをブロックしました。")

@@ -22,6 +22,13 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
         customizeTableView.allowsMultipleSelection = true
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefaults.standard.array(forKey: "choice") == nil {
+        } else {
+            UserDefaults.standard.removeObject(forKey: "choice")
+        }
+    }
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
@@ -42,8 +49,6 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at:indexPath)
-        cell?.accessoryType = .checkmark
         let ud = UserDefaults.standard
         var array = [String]()
         if let data = UserDefaults.standard.array(forKey: "choice") {
@@ -56,8 +61,6 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        let cell = tableView.cellForRow(at:indexPath)
-        cell?.accessoryType = .none
         var array = [String]()
         var saveArray = [String]()
         if let data = UserDefaults.standard.array(forKey: "choice") {

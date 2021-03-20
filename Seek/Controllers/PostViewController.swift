@@ -74,20 +74,12 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     func loadData() {
-        // custimoizeクラスを検索するNCMBQueryを作成
         let query = NCMBQuery(className: "customize")
-        // custimzeカラムの選択された行を検索
-        // 複数検索をかけることができる関数
         query?.whereKey("customize", containedIn: selectedItems)
-        // 列のデータを取得
         query?.findObjectsInBackground({ (results, error) in
             if error != nil {
             } else {
-                // 成功
-               // print(results)
-                // 結果をダウンキャスト。取り出したデータは一つであるが、形式上配列。
                 let toppings = results as? [NCMBObject] ?? []
-                // toppgingsの中身をfor文で回して中身を配列iに格納
                 for text in toppings {
                     print(text)
                     let selectedCustomize = text.object(forKey: "customize") as? String ?? ""
@@ -107,22 +99,14 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
         })
     }
+
     func loadData2() {
         KRProgressHUD.show()
-        // menuクラスを検索するNCMBQueryを作成
           let query = NCMBQuery(className: "menu")
-        // menuクラスの選択され行のデータを検索を検索
           query?.whereKey("menu", equalTo: passedMenu2 as? String ?? "")
-              // 列のデータを取得
         query?.findObjectsInBackground({ [self] (results, error) in
                   if error != nil {
-                    // 失敗
-                      print(error)
                  } else {
-                    // 成功
-                      print(results)
-                    // 取り出した結果(results)をNCMB型にダウンキャストして変数に代入
-                    // データは一つしかないが、形式的には配列
                   let menus = results as? [NCMBObject] ?? []
                     
                     for text in menus {
@@ -145,6 +129,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                   }
               })
     }
+
     override func viewDidAppear(_ animated: Bool) {
         totalPrice += menuSumPrice
         totalPrice += toppingsSumPrice
@@ -154,8 +139,7 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         totalCalorieLabel.text = String(totalCalorie)
     }
     
-    @IBAction func sharePost() {
-        
+    @IBAction private func sharePost() {
         KRProgressHUD.show()
         let postObject = NCMBObject(className: "post")
         // 配列からデータを取り出す
@@ -167,11 +151,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postObject?.setObject(totalCalorie, forKey: "postCalorie")
         postObject?.setObject(selctedToppings, forKey: "toppings")
         postObject?.setObject(customImageUrl, forKey: "customImage")
-        // ここをNCMBUser.current().userNameでやると取得できない
         postObject?.setObject(NCMBUser.current(), forKey: "userName")
         postObject?.saveInBackground({ (error) in
             if error != nil {
-                print(error)
             } else {
                 // 0番目のtabに戻る　＝　タイムライン
                 self.tabBarController?.selectedIndex = 0

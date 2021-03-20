@@ -9,8 +9,6 @@ import UIKit
 import NCMB
 
 class Post: NSObject {
-    
-    
     var menuName: String!
     var menuImage: String!
     var totalPrice: String!
@@ -20,12 +18,8 @@ class Post: NSObject {
     var createDate: Date!
     var toppings = [String]()
     var customImage = [String]()
-    
-    
-    
-    
+
     init(menuName: String, user: User, menuImage: String, totalPrice: String, totalCalorie: String, createDate: Date, toppings:[String], customImage:[String], objectId: String ) {
-        // 取得した値を変数に代入
            self.menuName = menuName
            self.user = user
            self.menuImage = menuImage
@@ -34,13 +28,5 @@ class Post: NSObject {
            self.toppings = toppings
            self.objectId = objectId
            self.customImage = customImage
-        
-        
-      
-            
-}
-
-    
-    
-
+    }
 }

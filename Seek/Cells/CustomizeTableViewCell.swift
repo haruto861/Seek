@@ -12,8 +12,6 @@ class CustomizeTableViewCell: UITableViewCell {
     @IBOutlet private var customizeNameLabel: UILabel!
     @IBOutlet private var customCalorieLabel: UILabel!
     @IBOutlet private var customPriceLabel: UILabel!
-    @IBOutlet private weak var mainBackground: UIView!
-    @IBOutlet private weak var shadowLayer: UIView!
     var customizeArrays = [Customize]()
     var indexPath: IndexPath?
 

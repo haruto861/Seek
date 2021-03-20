@@ -10,8 +10,6 @@
 		F1117F65258E38A90091F289 /* ShadowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1117F64258E38A90091F289 /* ShadowView.swift */; };
 		F12B026226034522003314D7 /* Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B026126034522003314D7 /* Menu.swift */; };
 		F12B027926037B93003314D7 /* Customize.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B027826037B93003314D7 /* Customize.swift */; };
-		F13CCD6B25766E8000E3A659 /* appIcon@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCD6A25766E8000E3A659 /* appIcon@2x.jpg */; };
-		F13CCD7025766FCE00E3A659 /* backgroundImage@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCD6F25766FCE00E3A659 /* backgroundImage@2x.jpg */; };
 		F13CCE6F257E562900E3A659 /* whippedcream@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCE6E257E562900E3A659 /* whippedcream@2x.jpg */; };
 		F13CCE7D257E563700E3A659 /* syrup@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCE7C257E563700E3A659 /* syrup@2x.jpg */; };
 		F13CCE87257E564A00E3A659 /* espressoshot@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F13CCE86257E564A00E3A659 /* espressoshot@2x.jpg */; };
@@ -133,8 +131,6 @@
 		F1117F64258E38A90091F289 /* ShadowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowView.swift; sourceTree = "<group>"; };
 		F12B026126034522003314D7 /* Menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Menu.swift; sourceTree = "<group>"; };
 		F12B027826037B93003314D7 /* Customize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customize.swift; sourceTree = "<group>"; };
-		F13CCD6A25766E8000E3A659 /* appIcon@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "appIcon@2x.jpg"; sourceTree = "<group>"; };
-		F13CCD6F25766FCE00E3A659 /* backgroundImage@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "backgroundImage@2x.jpg"; sourceTree = "<group>"; };
 		F13CCE6E257E562900E3A659 /* whippedcream@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "whippedcream@2x.jpg"; sourceTree = "<group>"; };
 		F13CCE7C257E563700E3A659 /* syrup@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "syrup@2x.jpg"; sourceTree = "<group>"; };
 		F13CCE86257E564A00E3A659 /* espressoshot@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "espressoshot@2x.jpg"; sourceTree = "<group>"; };
@@ -402,8 +398,6 @@
 				F12B027026036EFE003314D7 /* Controllers */,
 				F1B3E53225303DFC002A3557 /* AppDelegate.swift */,
 				F1B3E53425303DFC002A3557 /* SceneDelegate.swift */,
-				F13CCD6A25766E8000E3A659 /* appIcon@2x.jpg */,
-				F13CCD6F25766FCE00E3A659 /* backgroundImage@2x.jpg */,
 				F1B3E53B25303E01002A3557 /* Assets.xcassets */,
 				F1B3E54025303E01002A3557 /* Info.plist */,
 				F1E3FA8A25BFA6E200C66FFD /* menuImage */,
@@ -626,14 +620,12 @@
 				F13CCE7D257E563700E3A659 /* syrup@2x.jpg in Resources */,
 				F13CCEDE257FB86700E3A659 /* iphone_app60x60@2x.png in Resources */,
 				F1B3E53A25303DFC002A3557 /* Main.storyboard in Resources */,
-				F13CCD6B25766E8000E3A659 /* appIcon@2x.jpg in Resources */,
 				F1B48188253D609900D61A95 /* CustomizeTableViewCell.xib in Resources */,
 				F1E3FA6B25BBD55A00C66FFD /* sources@2x.jpg in Resources */,
 				F1E3FAA625BFA70000C66FFD /* DF@2x.JPG in Resources */,
 				F1E3FAAA25BFA70000C66FFD /* VF@2x.JPG in Resources */,
 				F13CCE8C257E565900E3A659 /* citrus@2x.jpg in Resources */,
 				F1E3FAAB25BFA70000C66FFD /* CF@2x.JPG in Resources */,
-				F13CCD7025766FCE00E3A659 /* backgroundImage@2x.jpg in Resources */,
 				F1E3FAAC25BFA70000C66FFD /* CBR@2x.JPG in Resources */,
 				F1E3FAB025BFAD3000C66FFD /* WCO@2x.JPG in Resources */,
 				F1E3FAA025BFA70000C66FFD /* CRF@2x.JPG in Resources */,

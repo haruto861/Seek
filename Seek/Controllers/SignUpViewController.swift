@@ -48,7 +48,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                 // エラーがあった場合
             } else {
                 // 登録成功
-                // 登録成功
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
                 UIApplication.shared.keyWindow?.rootViewController = rootViewController
