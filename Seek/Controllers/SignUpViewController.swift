@@ -31,7 +31,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUp() {
         let user = NCMBUser()
         if userTdTextField.text!.count <= 4 {
-            print("文字数が足りません")
             return
         }
         user.userName = userTdTextField.text!
@@ -39,13 +38,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         if passwordTextField.text == confirmTextFied.text {
         user.password = passwordTextField.text!
         } else {
-            print("error")
         }
-        
         user.signUpInBackground { (error) in
             if error != nil {
-                print("error")
-                // エラーがあった場合
             } else {
                 // 登録成功
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
