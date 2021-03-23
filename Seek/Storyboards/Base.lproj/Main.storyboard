@@ -478,9 +478,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="postDataTableView" destination="QTY-tT-7zp" id="TIU-zt-M99"/>
-                        <outlet property="postMenuImage" destination="CyQ-zD-6B3" id="eex-vn-8dn"/>
-                        <outlet property="postMenuNameLabel" destination="Zt7-VM-2ax" id="ZxS-wt-1q1"/>
+                        <outlet property="customizesTableView" destination="QTY-tT-7zp" id="xJu-q6-3sO"/>
+                        <outlet property="menuImageView" destination="CyQ-zD-6B3" id="Ehv-rZ-upF"/>
+                        <outlet property="menuNameLabel" destination="Zt7-VM-2ax" id="sBf-9p-v4U"/>
                         <outlet property="totalCalorieLabel" destination="S2Y-yU-GIM" id="OC0-Ti-1da"/>
                         <outlet property="totalPriceLabel" destination="JXg-WL-tAE" id="Dil-SM-57r"/>
                     </connections>

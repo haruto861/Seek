@@ -9,131 +9,102 @@ import UIKit
 import NCMB
 import KRProgressHUD
 
-
 class PostViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBOutlet var postDataTableView: UITableView!
-    @IBOutlet var postMenuImage: UIImageView!
-    @IBOutlet var postMenuNameLabel: UILabel!
-    @IBOutlet var totalPriceLabel: UILabel!
-    @IBOutlet var totalCalorieLabel: UILabel!
-    var selectedItems = [String]()
-    var selctedToppings =  [String]()
-    var customImageUrl = [String]()
-    var passedMenu2: String!
-    // 価格計算 初期値0
-    var toppingsSumPrice = 0
-    var menuSumPrice = 0
-    var totalPrice = 0
-    //　カロリー計算 初期値0
-    var toppingsSumCalorie = 0
-    var menuSumCalorie = 0
+    @IBOutlet private weak var customizesTableView: UITableView!
+    @IBOutlet private var totalPriceLabel: UILabel!
+    @IBOutlet private var totalCalorieLabel: UILabel!
+    @IBOutlet private weak var menuImageView: UIImageView!
+    @IBOutlet private weak var menuNameLabel: UILabel!
+    var selectedCustomizes = [String]()
+    var selectedMenu: String!
+    var customizeMenuNames =  [String]()
+    var customImageUrls = [String]()
+    var customizePrice = 0
+    var customizeCalorie = 0
+    var menuPrice = 0
+    var menuCalorie = 0
     var totalCalorie = 0
-    var selectedMenu: NCMBObject!
+    var totalPrice = 0
     var menuNames = [String]()
     var menuImages = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        postDataTableView.rowHeight = 70
-        postDataTableView.delegate = self
-        postDataTableView.dataSource = self
+        customizesTableView.rowHeight = 70
+        customizesTableView.delegate = self
+        customizesTableView.dataSource = self
         let nib = UINib(nibName: "PostTableViewCell", bundle: Bundle.main)
-        postDataTableView.register(nib, forCellReuseIdentifier: "postCell")
-        // ud領域を確保
-        let ud = UserDefaults.standard
-        // udのchoiceキーの中身を呼び出し、配列に格納
-        if ud.array(forKey: "choice") != nil {
-            selectedItems = ud.array(forKey: "choice") as? [String] ?? []
-        } else {
-        }
-        UserDefaults.standard.removeObject(forKey: "choice")
-        print(UserDefaults.standard.array(forKey: "choice"))
-        // ud領域を確保
-        let ud2 = UserDefaults.standard
-        // udのselecrtedキーの中身(コレクションビューで選択された物)を呼び出す
-        passedMenu2 = ud.string(forKey: "selected")
-        let ud3 = UserDefaults.standard
-        menuSumCalorie += ud.integer(forKey: "menuCalorie")
-        menuSumPrice += ud.integer(forKey: "menuPrice")
-
-        loadData()
-        loadData2()
+        customizesTableView.register(nib, forCellReuseIdentifier: "postCell")
+        getUserDefaultsData()
+        getSelectedMenuData()
+        getSeletedCustomizeData()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selctedToppings.count
+        return customizeMenuNames.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell") as? PostTableViewCell else {
-            abort()
-        }
-        cell.passedCustomizeLabel.text = selctedToppings[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell") as? PostTableViewCell else { abort()}
+        cell.passedCustomizeLabel.text = customizeMenuNames[indexPath.row]
         return cell
     }
 
-    func loadData() {
+    private func getUserDefaultsData() {
+        let ud = UserDefaults.standard
+        if ud.array(forKey: "choice") == nil {
+        } else {
+            selectedCustomizes = ud.array(forKey: "choice") as? [String] ?? []
+        }
+        selectedMenu = ud.string(forKey: "selected")
+        menuCalorie += ud.integer(forKey: "menuCalorie")
+        menuPrice += ud.integer(forKey: "menuPrice")
+
+    }
+
+    private func getSeletedCustomizeData() {
         let query = NCMBQuery(className: "customize")
-        query?.whereKey("customize", containedIn: selectedItems)
+        query?.whereKey("customize", containedIn: selectedCustomizes)
         query?.findObjectsInBackground({ (results, error) in
-            if error != nil {
-            } else {
-                let toppings = results as? [NCMBObject] ?? []
-                for text in toppings {
-                    let selectedCustomize = text.object(forKey: "customize") as? String ?? ""
-                    let customImageUrl = text.object(forKey: "image") as? String ?? ""
-                    // for文を回して選択するごとに値を足していく
-                    // 価格計算
-                    self.toppingsSumPrice += text.object(forKey: "price") as? Int ?? 0
-                    // カロリー計算
-                    self.toppingsSumCalorie += self.menuSumCalorie
-                    self.selctedToppings.append(selectedCustomize)
-                    self.customImageUrl.append(customImageUrl)
-                    print(self.selctedToppings)
-                    self.postDataTableView.reloadData()
-                }
-                print(self.toppingsSumPrice)
-                print(self.toppingsSumCalorie)
+            guard let customizes = results as? [NCMBObject] else { return }
+            for customize in customizes {
+                guard let selectedCustomize = customize.object(forKey: "customize") as? String else { return }
+                guard let selectedCustomizeImageUrl = customize.object(forKey: "image") as? String else { return }
+                guard let selectedCustomizePrice = customize.object(forKey: "price") as? Int else { return  }
+                guard let selectedCustomizeCalorie = customize.object(forKey: "calorie") as? Int else { return  }
+                self.customizePrice += selectedCustomizePrice
+                self.customizeCalorie += selectedCustomizeCalorie
+                print(self.customizeCalorie)
+                self.customizeMenuNames.append(selectedCustomize)
+                self.customImageUrls.append(selectedCustomizeImageUrl)
             }
+            self.customizesTableView.reloadData()
         })
     }
 
-    func loadData2() {
+    private func getSelectedMenuData() {
         KRProgressHUD.show()
         let query = NCMBQuery(className: "menu")
-        query?.whereKey("menu", equalTo: passedMenu2 as? String ?? "")
+        query?.whereKey("menu", equalTo: selectedMenu)
         query?.findObjectsInBackground({ [self] (results, error) in
-                  if error != nil {
-                 } else {
-                  let menus = results as? [NCMBObject] ?? []
-                    
-                    for text in menus {
-                        let menuName = text.object(forKey: "menu")
-                        let menuImage = text.object(forKey: "image")
-                        self.menuNames.append(menuName as? String ?? "")
-                        self.menuImages.append(menuImage as? String ?? "")
-                    }
-                    let menu = menus[0]
-                         print(menu)
-                    self.postMenuNameLabel.text = menu.object(forKey: "menu") as? String ?? ""
-                    self.menuSumPrice += menu.object(forKey: "price") as? Int ?? 0
-                    self.menuSumCalorie += menu.object(forKey: "calorie") as? Int ?? 0
-                    let imageUrl = menu.object(forKey: "image") as? String ?? ""
-                        print(imageUrl)
-                         // urlを変換
-                        self.postMenuImage.kf.setImage(with:URL(string: imageUrl))
-                        // 画像を読み込むための処理
-                        KRProgressHUD.dismiss()
-                  }
-              })
+            guard let menus = results as? [NCMBObject] else { return }
+            for menu in menus {
+                guard let menuName = menu.object(forKey: "menu") as? String else { return }
+                self.menuNameLabel.text = menuName
+                guard let menuImage = menu.object(forKey: "image") as? String else { return }
+                self.menuImageView.kf.setImage(with:URL(string: menuImage))
+            }
+        })
+        KRProgressHUD.dismiss()
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        totalPrice += menuSumPrice
-        totalPrice += toppingsSumPrice
-        totalPriceLabel.text = String(totalPrice)
-        totalCalorie += menuSumCalorie
-        totalCalorie += toppingsSumCalorie
-        totalCalorieLabel.text = String(totalCalorie)
+        totalPrice += menuPrice
+        totalPrice += customizePrice
+        totalPriceLabel.text = "\(totalPrice)"
+        totalCalorie += menuCalorie
+        totalCalorie += customizeCalorie
+        totalCalorieLabel.text = "\(totalCalorie)"
     }
     
     @IBAction private func sharePost() {
@@ -145,18 +116,14 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
         postObject?.setObject(menuImage, forKey: "menuImage")
         postObject?.setObject(totalPrice, forKey: "postPrice")
         postObject?.setObject(totalCalorie, forKey: "postCalorie")
-        postObject?.setObject(selctedToppings, forKey: "toppings")
-        postObject?.setObject(customImageUrl, forKey: "customImage")
+        postObject?.setObject(customizeMenuNames, forKey: "toppings")
+        postObject?.setObject(customImageUrls, forKey: "customImage")
         postObject?.setObject(NCMBUser.current(), forKey: "userName")
         postObject?.saveInBackground({ (error) in
-            if error != nil {
-            } else {
-                // 0番目のtabに戻る　＝　タイムライン
-                self.tabBarController?.selectedIndex = 0
-                self.dismiss(animated: true, completion: nil)
-                // 三つ前のviewcontrollerに戻る
+            if error == nil {
                 let index = self.navigationController!.viewControllers.count - 4
                 self.navigationController?.popToViewController(self.navigationController!.viewControllers[index], animated: true)
+            } else {
             }
         })
         KRProgressHUD.dismiss()
