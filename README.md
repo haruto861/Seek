@@ -11,7 +11,7 @@
 ## 使い方の紹介
 
 ### プロフィールタブ（右）
-<img src="https://user-images.githubusercontent.com/75295738/112105417-bb415e00-8bef-11eb-8268-031bc4c5f94d.png" width="230px">  
+<img src="https://user-images.githubusercontent.com/75295738/112105417-bb415e00-8bef-11eb-8268-031bc4c5f94d.png" width="230px">   
 <img src="https://user-images.githubusercontent.com/75295738/112105434-c0061200-8bef-11eb-9aca-79921056d910.png" width="230px">
 
 ### メニュータブ
