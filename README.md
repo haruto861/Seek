@@ -18,10 +18,12 @@
 
 ### プロフィールタブ（右）
 プロフィール画面  
-<img src="https://user-images.githubusercontent.com/75295738/112105417-bb415e00-8bef-11eb-8268-031bc4c5f94d.png" width="230px"> 
-<img src="https://user-images.githubusercontent.com/75295738/112105434-c0061200-8bef-11eb-9aca-79921056d910.png" width="230px">   
-①ログイン画面  
-②新規登録画面
+<img src="https://user-images.githubusercontent.com/75295738/112111651-d617d080-8bf7-11eb-8cd7-2dd1f295cc66.png" width="230px">
+<img src="https://user-images.githubusercontent.com/75295738/112111671-ddd77500-8bf7-11eb-85bc-9b45b3910475.png" width="230px">
+<img src="https://user-images.githubusercontent.com/75295738/112111690-e334bf80-8bf7-11eb-9ada-eaf5dc659f38.png" width="230px">  
+①プロフィールページ。投稿したものが表示されます。 
+②プロフィール編集ページ  
+③投稿は削除可能です。
 
 ### メニュータブ（中央）
 ドリンク作成作成画面    
