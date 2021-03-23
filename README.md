@@ -11,18 +11,18 @@
 ## 使い方の紹介
 
 ### ローンチ画面  
-①ログイン画面 → ②新規登録画面  
+①ログイン画面→②新規登録画面  
 <img src="https://user-images.githubusercontent.com/75295738/112105417-bb415e00-8bef-11eb-8268-031bc4c5f94d.png" width="230px">
 <img src="https://user-images.githubusercontent.com/75295738/112105434-c0061200-8bef-11eb-9aca-79921056d910.png" width="230px">
 
 ### プロフィールタブ（右）
-①プロフィールページ。投稿したものが表示されます → ②プロフィール編集ページ → ③投稿は削除可能です。
+①プロフィールページ。投稿したものが表示されます → ②プロフィール編集ページ → ③投稿は削除可能です  
 <img src="https://user-images.githubusercontent.com/75295738/112111651-d617d080-8bf7-11eb-8cd7-2dd1f295cc66.png" width="230px">
 <img src="https://user-images.githubusercontent.com/75295738/112111671-ddd77500-8bf7-11eb-85bc-9b45b3910475.png" width="230px">
 <img src="https://user-images.githubusercontent.com/75295738/112111690-e334bf80-8bf7-11eb-9ada-eaf5dc659f38.png" width="230px">  
 
 ### メニュータブ（中央）
-①メニューから任意のドリンクを選択します。→②選択したドリンクの「サイズ」・「ミルクの種類」を選択します。→③ドリンクに任意のカスタマイズ（チョコレートソーズの追加etc）を加えます。→④選択した内容を確認しタイムラインに投稿します。
+①メニューから任意のドリンクを選択します。→②選択したドリンクの「サイズ」・「ミルクの種類」を選択します。→③ドリンクに任意のカスタマイズ（チョコレートソーズの追加etc）を加えます。→④選択した内容を確認しタイムラインに投稿します。  
 <img src="https://user-images.githubusercontent.com/75295738/112105361-a795f780-8bef-11eb-8afc-6434c5a26211.png" width="200px">
 <img src="https://user-images.githubusercontent.com/75295738/112105586-edeb5680-8bef-11eb-998f-3541906027eb.png" width="200px">
 <img src="https://user-images.githubusercontent.com/75295738/112105602-f2b00a80-8bef-11eb-8ec7-22c272768459.png" width="200px">
