@@ -74,12 +74,11 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 guard let selectedCustomizeCalorie = customize.object(forKey: "calorie") as? Int else { return  }
                 self.customizePrice += selectedCustomizePrice
                 self.customizeCalorie += selectedCustomizeCalorie
-                print(self.customizeCalorie)
                 self.customizeMenuNames.append(selectedCustomize)
                 self.customImageUrls.append(selectedCustomizeImageUrl)
             }
-            self.customizesTableView.reloadData()
         })
+        self.customizesTableView.reloadData()
     }
 
     private func getSelectedMenuData() {
