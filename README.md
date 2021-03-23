@@ -16,13 +16,13 @@
 <img src="https://user-images.githubusercontent.com/75295738/112105434-c0061200-8bef-11eb-9aca-79921056d910.png" width="230px">
 
 ### プロフィールタブ（右）
-①プロフィールページ。投稿したものが表示されます → ②プロフィール編集ページ → ③投稿は削除可能です  
+①プロフィールページ。投稿したものが表示される → ②プロフィール編集ページ → ③投稿は削除可能。
 <img src="https://user-images.githubusercontent.com/75295738/112111651-d617d080-8bf7-11eb-8cd7-2dd1f295cc66.png" width="230px">
 <img src="https://user-images.githubusercontent.com/75295738/112111671-ddd77500-8bf7-11eb-85bc-9b45b3910475.png" width="230px">
 <img src="https://user-images.githubusercontent.com/75295738/112111690-e334bf80-8bf7-11eb-9ada-eaf5dc659f38.png" width="230px">  
 
 ### メニュータブ（中央）
-①メニューから任意のドリンクを選択します。→②選択したドリンクの「サイズ」・「ミルクの種類」を選択します。→③ドリンクに任意のカスタマイズ（チョコレートソーズの追加etc）を加えます。→④選択した内容を確認しタイムラインに投稿します。  
+①メニューから任意のドリンクを選択。→②ドリンクの「サイズ」・「ミルクの種類」を選択。→③任意のカスタマイズ（チョコレートソーズの追加etc）を追加。→④内容を確認しタイムラインに投稿。  
 <img src="https://user-images.githubusercontent.com/75295738/112105361-a795f780-8bef-11eb-8afc-6434c5a26211.png" width="200px">
 <img src="https://user-images.githubusercontent.com/75295738/112105586-edeb5680-8bef-11eb-998f-3541906027eb.png" width="200px">
 <img src="https://user-images.githubusercontent.com/75295738/112105602-f2b00a80-8bef-11eb-8ec7-22c272768459.png" width="200px">
@@ -30,11 +30,10 @@
 
 
 ### ホームラインタブ（左）
-タイムライン画面  
+①他人の投稿は「ブロック・報告」が可能。→②自分の投稿の場合は削除が可能。 
 <img src="https://user-images.githubusercontent.com/75295738/112110971-ee3b2000-8bf6-11eb-88bf-a83bb1862dfb.png" width="230px">
 <img src="https://user-images.githubusercontent.com/75295738/112110988-f2ffd400-8bf6-11eb-9099-e869850f7af2.png" width="230px">  
-①他人の投稿は「ブロック・報告」ができます。  
-②自分の投稿の場合は削除が可能です。
+
 
 
 
