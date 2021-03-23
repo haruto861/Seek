@@ -180,6 +180,7 @@
                         <outlet property="confirmTextFied" destination="FVX-8p-tA0" id="KSi-Dl-QZZ"/>
                         <outlet property="emailTextField" destination="8NU-87-8ce" id="ARz-ZN-zCn"/>
                         <outlet property="passwordTextField" destination="jdM-cG-toe" id="HYm-9O-ZWw"/>
+                        <outlet property="registerButton" destination="t0f-id-Ls7" id="iL8-wn-Knq"/>
                         <outlet property="userTdTextField" destination="NAZ-Zd-vai" id="eGA-g5-X16"/>
                     </connections>
                 </viewController>

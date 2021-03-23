@@ -8,11 +8,13 @@
 import UIKit
 import NCMB
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet var userTdTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var confirmTextFied: UITextField!
+class SignUpViewController: UIViewController {
+    @IBOutlet private var userTdTextField: UITextField!
+    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var confirmTextFied: UITextField!
+    @IBOutlet private weak var registerButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -21,36 +23,60 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         emailTextField.delegate = self
         passwordTextField.delegate = self
         confirmTextFied.delegate = self
-    }
-    
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
+        registerButton.isEnabled = true
+        registerButton.backgroundColor = .rgb(red: 34, green: 56, blue: 66)
     }
 
-    @IBAction func signUp() {
+    @IBAction private func signUp() {
         let user = NCMBUser()
-        if userTdTextField.text!.count <= 4 {
-            return
-        }
         user.userName = userTdTextField.text!
         user.mailAddress = emailTextField.text!
         if passwordTextField.text == confirmTextFied.text {
         user.password = passwordTextField.text!
         } else {
+            self.presentAlert(title: "エラー", message: "パスワードが一致しておりません。")
         }
         user.signUpInBackground { (error) in
-            if error != nil {
-            } else {
-                // 登録成功
+            if error == nil {
+                self.presentAlert(title: "登録完了", message: "ご登録ありがとうございます。")
                 let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
                 let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
                 UIApplication.shared.keyWindow?.rootViewController = rootViewController
-               // ログイン状態の保持
                 let ud = UserDefaults.standard
                 ud.setValue(true, forKey: "isLogin")
                 ud.synchronize()
+            } else {
+                self.presentAlert(title: "エラー", message: "アドレスの形式に誤りがあります")
             }
         }
+    }
+
+    private func presentAlert(title:String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+            }
 }
+
+extension SignUpViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        let userIdEmpty = userTdTextField.text?.isEmpty ?? false
+        let passwordEmpty = passwordTextField.text?.isEmpty ?? false
+        let emailEmpty = emailTextField.text?.isEmpty ?? false
+        let confirmEmpty = confirmTextFied.text?.isEmpty ?? false
+        
+        if userIdEmpty || passwordEmpty || emailEmpty || confirmEmpty {
+            registerButton.isEnabled = false
+            registerButton.backgroundColor = .rgb(red: 100, green: 100, blue: 100)
+        } else {
+            registerButton.isEnabled = true
+            registerButton.backgroundColor = .rgb(red: 34, green: 56, blue: 66)
+        }
+    }
 }

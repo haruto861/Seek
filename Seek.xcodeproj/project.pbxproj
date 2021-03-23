@@ -50,6 +50,7 @@
 		F15113F12566C58600C17F95 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15113F02566C58600C17F95 /* TabBarViewController.swift */; };
 		F17CF71A25669E7500AAC09A /* addBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CF71925669E7500AAC09A /* addBackground.swift */; };
 		F1879C6F2574D14A00FF7C50 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1879C6E2574D14A00FF7C50 /* LaunchScreenViewController.swift */; };
+		F19102E42609A74C00D67E46 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19102E32609A74C00D67E46 /* UIColor-Extension.swift */; };
 		F1B3E53325303DFC002A3557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B3E53225303DFC002A3557 /* AppDelegate.swift */; };
 		F1B3E53525303DFC002A3557 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B3E53425303DFC002A3557 /* SceneDelegate.swift */; };
 		F1B3E53A25303DFC002A3557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B3E53825303DFC002A3557 /* Main.storyboard */; };
@@ -171,6 +172,7 @@
 		F15113F02566C58600C17F95 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		F17CF71925669E7500AAC09A /* addBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBackground.swift; sourceTree = "<group>"; };
 		F1879C6E2574D14A00FF7C50 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		F19102E32609A74C00D67E46 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		F1B3E52F25303DFC002A3557 /* Seek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3E53225303DFC002A3557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1B3E53425303DFC002A3557 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				F1B3E5BB2531AEBD002A3557 /* Extension.swift */,
+				F19102E32609A74C00D67E46 /* UIColor-Extension.swift */,
 				F17CF71925669E7500AAC09A /* addBackground.swift */,
 				F1117F64258E38A90091F289 /* ShadowView.swift */,
 			);
@@ -787,6 +790,7 @@
 				F14E650E255AE21E0026111E /* Post.swift in Sources */,
 				F12B026226034522003314D7 /* Menu.swift in Sources */,
 				F17CF71A25669E7500AAC09A /* addBackground.swift in Sources */,
+				F19102E42609A74C00D67E46 /* UIColor-Extension.swift in Sources */,
 				F1B3E5A125307C99002A3557 /* SignUpViewController.swift in Sources */,
 				F1B3E5EE2537CE46002A3557 /* MenuCollectionViewCell.swift in Sources */,
 				F14E65612562C7730026111E /* TimeLineCollectionViewCell.swift in Sources */,
