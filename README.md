@@ -11,6 +11,7 @@
 ## 使い方の紹介
 
 ![Simulator Screen Shot - iPhone 11 - 2021-03-23 at 15 51 19](https://user-images.githubusercontent.com/75295738/112105336-9d73f900-8bef-11eb-830f-0a109d3999be.png)
+<img src="***https://user-images.githubusercontent.com/75295738/112105336-9d73f900-8bef-11eb-830f-0a109d3999be.png***" width="***320px***">
 ![Simulator Screen Shot - iPhone 11 - 2021-03-23 at 15 51 37](https://user-images.githubusercontent.com/75295738/112105361-a795f780-8bef-11eb-8afc-6434c5a26211.png)
 ![Simulator Screen Shot - iPhone 11 - 2021-03-23 at 15 52 09](https://user-images.githubusercontent.com/75295738/112105417-bb415e00-8bef-11eb-8268-031bc4c5f94d.png)
 ![Simulator Screen Shot - iPhone 11 - 2021-03-23 at 15 52 18](https://user-images.githubusercontent.com/75295738/112105434-c0061200-8bef-11eb-9aca-79921056d910.png)
