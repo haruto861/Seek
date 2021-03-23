@@ -9,10 +9,8 @@
 ②starbucksに行きたいが敷居が高くて入りにくいという「ロイヤルカスタマー」と「ポテンシャルカスタマー」の両サイドのニーズを解決しようと考えた為。
 
 ## 使い方の紹介
-トップ画面（メニュー選択画面)  
-<img src="https://user-images.githubusercontent.com/75295738/112105361-a795f780-8bef-11eb-8afc-6434c5a26211.png" width="100px">    
-この画面から自分の好きなメニューを選択します。  
-<img src="https://user-images.githubusercontent.com/75295738/112105336-9d73f900-8bef-11eb-830f-0a109d3999be.png" width="100px">
+メニュータブ（ドリンク作成）
+<img src="https://user-images.githubusercontent.com/75295738/112105361-a795f780-8bef-11eb-8afc-6434c5a26211.png" width="100px">     
 <img src="https://user-images.githubusercontent.com/75295738/112105586-edeb5680-8bef-11eb-998f-3541906027eb.png" width="100px">
 <img src="https://user-images.githubusercontent.com/75295738/112105602-f2b00a80-8bef-11eb-8ec7-22c272768459.png" width="100px">
 
