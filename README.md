@@ -9,6 +9,9 @@
 ②starbucksに行きたいが敷居が高くて入りにくいという「ロイヤルカスタマー」と「ポテンシャルカスタマー」の両サイドのニーズを解決しようと考えた為。
 
 ## 使い方の紹介
+
+・プロフィールタブ（右）
+
 ・メニュータブ（ドリンク作成作成画面）     
 <img src="https://user-images.githubusercontent.com/75295738/112105361-a795f780-8bef-11eb-8afc-6434c5a26211.png" width="230px">
 <img src="https://user-images.githubusercontent.com/75295738/112105586-edeb5680-8bef-11eb-998f-3541906027eb.png" width="230px">
