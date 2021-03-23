@@ -29,6 +29,9 @@
 ④選択した内容を確認しタイムラインに投稿します。
 
 ### ホームラインタブ（左）
+<img src="https://user-images.githubusercontent.com/75295738/112110950-e9766c00-8bf6-11eb-87d5-0d67d102c726.png)" width="230px"> 
+<img src="https://user-images.githubusercontent.com/75295738/112110971-ee3b2000-8bf6-11eb-88bf-a83bb1862dfb.png" width="230px"> 
+<img src="https://user-images.githubusercontent.com/75295738/112110988-f2ffd400-8bf6-11eb-9099-e869850f7af2.png" width="230px"> 
 
 
 
