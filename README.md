@@ -9,4 +9,5 @@
 ②starbucksに行きたいが敷居が高くて入りにくいという「ロイヤルカスタマー」と「ポテンシャルカスタマー」の両サイドのニーズを解決しようと考えた為。
 
 ## 使い方の紹介
-![Simulator Screen Shot - iPhone 11 - 2021-03-23 at 15 51 19](https://user-images.githubusercontent.com/75295738/112105336-9d73f900-8bef-11eb-830f-0a109d3999be.png)
+
+<img src="***(https://user-images.githubusercontent.com/75295738/112105336-9d73f900-8bef-11eb-830f-0a109d3999be.png)***" width="***60px***">
