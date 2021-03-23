@@ -11,5 +11,5 @@
 ## 使い方の紹介
 トップ画面（メニュー選択画面)  
 <img src="https://user-images.githubusercontent.com/75295738/112105361-a795f780-8bef-11eb-8afc-6434c5a26211.png" width="100px">    
-この画面から自分の好きなメニューを選択します。
+この画面から自分の好きなメニューを選択します。  
 <img src="https://user-images.githubusercontent.com/75295738/112105336-9d73f900-8bef-11eb-830f-0a109d3999be.png" width="100px">
