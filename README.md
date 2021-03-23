@@ -10,4 +10,4 @@
 
 ## 使い方の紹介
 
-<img src="https://user-images.githubusercontent.com/75295738/112105336-9d73f900-8bef-11eb-830f-0a109d3999be.png" width="***60***">
+<img src="https://user-images.githubusercontent.com/75295738/112105336-9d73f900-8bef-11eb-830f-0a109d3999be.png" width="***60px***">
