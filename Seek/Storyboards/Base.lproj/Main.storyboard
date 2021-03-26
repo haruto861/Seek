@@ -382,14 +382,14 @@
                                 <rect key="frame" x="87.5" y="71" width="200" height="200"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QTY-tT-7zp">
-                                <rect key="frame" x="73.5" y="322" width="228" height="204"/>
+                                <rect key="frame" x="56.5" y="322" width="262.5" height="204"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="70" id="A5c-7w-ddV">
-                                        <rect key="frame" x="0.0" y="28" width="228" height="70"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="72" id="A5c-7w-ddV">
+                                        <rect key="frame" x="0.0" y="28" width="262.5" height="72"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="A5c-7w-ddV" id="whN-IO-hLp">
-                                            <rect key="frame" x="0.0" y="0.0" width="228" height="70"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="262.5" height="72"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -461,7 +461,7 @@
                             <constraint firstItem="tHP-U1-0Kq" firstAttribute="centerX" secondItem="AKa-el-HCH" secondAttribute="centerX" id="MRq-WN-czh"/>
                             <constraint firstItem="tHP-U1-0Kq" firstAttribute="top" secondItem="QTY-tT-7zp" secondAttribute="bottom" constant="25" id="ND9-ip-PbO"/>
                             <constraint firstItem="CyQ-zD-6B3" firstAttribute="width" secondItem="AKa-el-HCH" secondAttribute="width" multiplier="0.533333" id="O2K-7c-vPO"/>
-                            <constraint firstItem="QTY-tT-7zp" firstAttribute="width" secondItem="AKa-el-HCH" secondAttribute="width" multiplier="0.608" id="P1z-gI-wqC"/>
+                            <constraint firstItem="QTY-tT-7zp" firstAttribute="width" secondItem="AKa-el-HCH" secondAttribute="width" multiplier="0.7" id="P1z-gI-wqC"/>
                             <constraint firstItem="QTY-tT-7zp" firstAttribute="top" secondItem="Zt7-VM-2ax" secondAttribute="bottom" constant="11" id="PnO-5l-VYn"/>
                             <constraint firstItem="tHP-U1-0Kq" firstAttribute="width" secondItem="AKa-el-HCH" secondAttribute="width" multiplier="0.553333" id="iB6-fe-tvq"/>
                             <constraint firstItem="FjL-NB-okd" firstAttribute="top" secondItem="tHP-U1-0Kq" secondAttribute="bottom" constant="10.5" id="kag-ip-f4l"/>
