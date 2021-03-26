@@ -21,7 +21,7 @@
 <img src="https://user-images.githubusercontent.com/75295738/112111671-ddd77500-8bf7-11eb-85bc-9b45b3910475.png" width="230px">
 <img src="https://user-images.githubusercontent.com/75295738/112111690-e334bf80-8bf7-11eb-9ada-eaf5dc659f38.png" width="230px">  
 
-### メニュータブ（中央）
+### ドリンク作成機能（中央タブ）
 ![Menu](https://user-images.githubusercontent.com/75295738/112592605-9516fa80-8e49-11eb-9876-be964d47e36a.gif)  
 ①メニューから任意のドリンクを選択  
 ②ドリンクの「サイズ」・「ミルクの種類」を選択。  
