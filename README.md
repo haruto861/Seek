@@ -11,9 +11,8 @@
 ## 使い方の紹介
 
 ### ローンチ画面  
-①ログイン画面→②新規登録画面  
-<img src="https://user-images.githubusercontent.com/75295738/112105417-bb415e00-8bef-11eb-8268-031bc4c5f94d.png" width="230px">
-<img src="https://user-images.githubusercontent.com/75295738/112105434-c0061200-8bef-11eb-9aca-79921056d910.png" width="230px">
+![SignIn](https://user-images.githubusercontent.com/75295738/112592184-ea064100-8e48-11eb-9b89-8015b0639fff.gif)
+
 
 ### プロフィールタブ（右）
 ①プロフィールページ。投稿したものが表示される → ②プロフィール編集ページ → ③投稿は削除可能  
