@@ -22,12 +22,8 @@
 <img src="https://user-images.githubusercontent.com/75295738/112111690-e334bf80-8bf7-11eb-9ada-eaf5dc659f38.png" width="230px">  
 
 ### メニュータブ（中央）
-①メニューから任意のドリンクを選択。→②ドリンクの「サイズ」・「ミルクの種類」を選択。→③任意のカスタマイズ（チョコレートソーズの追加etc）を追加。→④内容を確認しタイムラインに投稿。
 ![Menu](https://user-images.githubusercontent.com/75295738/112592605-9516fa80-8e49-11eb-9876-be964d47e36a.gif)
-<img src="https://user-images.githubusercontent.com/75295738/112105361-a795f780-8bef-11eb-8afc-6434c5a26211.png" width="200px">
-<img src="https://user-images.githubusercontent.com/75295738/112105586-edeb5680-8bef-11eb-998f-3541906027eb.png" width="200px">
-<img src="https://user-images.githubusercontent.com/75295738/112105602-f2b00a80-8bef-11eb-8ec7-22c272768459.png" width="200px">
-<img src="https://user-images.githubusercontent.com/75295738/112105628-f80d5500-8bef-11eb-93cf-4a8330d4d9e3.png" width="200px">  
+①メニューから任意のドリンクを選択。→②ドリンクの「サイズ」・「ミルクの種類」を選択。→③任意のカスタマイズ（チョコレートソーズの追加etc）を追加。→④内容を確認しタイムラインに投稿。
 
 
 ### ホームラインタブ（左）
