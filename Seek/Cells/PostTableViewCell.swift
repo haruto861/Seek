@@ -8,20 +8,15 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-    @IBOutlet var passedCustomizeLabel: UILabel!
-    @IBOutlet var passeMenuImage: UIImageView!
-    var customizeMenuNames =  [String]()
-    var customizeArray = [Customize]()
-    var indexPath:IndexPath?
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    @IBOutlet private weak var passedCustomizeLabel: UILabel!
+    var customizeArrays = [Customize]()
+    var indexPath: IndexPath?
+
     override func layoutSubviews() {
-        if customizeArray.count > 0  {
-            print(customizeArray)
+        if customizeArrays.count > 0 {
+            guard let indexPath = indexPath else { return }
+            guard let customizeNames = customizeArrays[indexPath.row].customizeName else { return }
+            passedCustomizeLabel.text = customizeNames
         }
     }
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }    
 }
