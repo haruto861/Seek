@@ -28,7 +28,7 @@
 
 ### ホームラインタブ（左）
 ①他人の投稿は「ブロック・報告」が可能。→②自分の投稿の場合は削除が可能  
-![Profile](https://user-images.githubusercontent.com/75295738/112722881-3176f500-8f4f-11eb-9abe-25b8fff18d53.gif)
+
 
 
 
