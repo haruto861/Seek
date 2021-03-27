@@ -16,9 +16,8 @@
 
 ### プロフィールタブ（右）
 ①プロフィールページ。投稿したものが表示される → ②プロフィール編集ページ → ③投稿は削除可能  
-<img src="https://user-images.githubusercontent.com/75295738/112111651-d617d080-8bf7-11eb-8cd7-2dd1f295cc66.png" width="230px">
-<img src="https://user-images.githubusercontent.com/75295738/112111671-ddd77500-8bf7-11eb-85bc-9b45b3910475.png" width="230px">
-<img src="https://user-images.githubusercontent.com/75295738/112111690-e334bf80-8bf7-11eb-9ada-eaf5dc659f38.png" width="230px">  
+![Profile](https://user-images.githubusercontent.com/75295738/112723301-14dbbc80-8f51-11eb-9f76-528e7e404655.gif)
+ 
 
 ### ドリンク作成機能（中央タブ）
 ![Menu](https://user-images.githubusercontent.com/75295738/112592605-9516fa80-8e49-11eb-9876-be964d47e36a.gif)  
