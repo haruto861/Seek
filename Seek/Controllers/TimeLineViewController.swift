@@ -248,6 +248,7 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
         query?.order(byDescending: "createDate")
         query?.includeKey("userName")
         query?.findObjectsInBackground({ (results, error) in
+            print(results)
             if error != nil {
             } else {
                 self.posts = [Post]()
