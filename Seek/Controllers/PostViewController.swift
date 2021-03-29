@@ -44,12 +44,9 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("numberOfRowsInSection")
         if customizeArrays.isEmpty {
             return 0
         } else {
-            print("numberOfRowsInSection完了")
-            print(customizeArrays.count)
             return customizeArrays.count
         }
     }
@@ -82,10 +79,8 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
                 self.customizePrice += selectedCustomizePrice
                 self.customImageUrls.append(selectedCustomizeImageUrl)
                 self.customizeMenuNames.append(selectedCustomize)
-                
                 self.customizeCalorie += selectedCustomizeCalorie
             }
-                print("customizesTableView.reloadData()")
             self.customizesTableView.reloadData()
         })
         }
@@ -143,7 +138,6 @@ class PostViewController: UIViewController, UITableViewDelegate, UITableViewData
             } else {
                 self.presentAlert()
             }
-
         })
         KRProgressHUD.dismiss()
     }
