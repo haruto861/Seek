@@ -10,27 +10,26 @@
 
 ## 使い方の紹介
 
-### ローンチ画面  
+### ログイン・登録画面（ローンチ画面）
 ![SignIn](https://user-images.githubusercontent.com/75295738/112592184-ea064100-8e48-11eb-9b89-8015b0639fff.gif)
 
 
-### プロフィールタブ（右）
-①プロフィールページ。投稿したものが表示される → ②プロフィール編集ページ → ③投稿は削除可能  
-<img src="https://user-images.githubusercontent.com/75295738/112111651-d617d080-8bf7-11eb-8cd7-2dd1f295cc66.png" width="230px">
-<img src="https://user-images.githubusercontent.com/75295738/112111671-ddd77500-8bf7-11eb-85bc-9b45b3910475.png" width="230px">
-<img src="https://user-images.githubusercontent.com/75295738/112111690-e334bf80-8bf7-11eb-9ada-eaf5dc659f38.png" width="230px">  
+### プロフィール画面（右タブ）
+![profile](https://user-images.githubusercontent.com/75295738/113099523-0a614180-9235-11eb-9e0c-11e0383df810.gif)  
+①プロフィールページ。投稿したものが表示される  
+②プロフィール編集ページ → ③投稿は削除可能  
 
-### ドリンク作成機能（中央タブ）
-![Menu](https://user-images.githubusercontent.com/75295738/112592605-9516fa80-8e49-11eb-9876-be964d47e36a.gif)  
+### ドリンク作成画面（中央タブ）
+![menu](https://user-images.githubusercontent.com/75295738/113099684-544a2780-9235-11eb-92ef-b2acc30b8adc.gif)  
 ①メニューから任意のドリンクを選択  
 ②ドリンクの「サイズ」・「ミルクの種類」を選択。  
 ③任意のカスタマイズ（チョコレートソーズの追加etc）を追加。  
 ④内容を確認しタイムラインに投稿。
 
-### ホームラインタブ（左）
-①他人の投稿は「ブロック・報告」が可能。→②自分の投稿の場合は削除が可能  
-<img src="https://user-images.githubusercontent.com/75295738/112110971-ee3b2000-8bf6-11eb-88bf-a83bb1862dfb.png" width="230px">
-<img src="https://user-images.githubusercontent.com/75295738/112110988-f2ffd400-8bf6-11eb-9099-e869850f7af2.png" width="230px">  
+### タイムライン画面（左タブ）
+![Timeline](https://user-images.githubusercontent.com/75295738/113101502-c15ebc80-9237-11eb-8853-64916b1a175a.gif)  
+①他人の投稿は「ブロック・報告」が可能。  
+②自分の投稿の場合は削除が可能  
 
 
 

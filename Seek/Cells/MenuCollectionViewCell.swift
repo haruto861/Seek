@@ -21,8 +21,7 @@ class MenuCollectionViewCell: UICollectionViewCell {
         if menuArrays.count > 0 {
             guard let indexPath = indexPath else { return }
             guard let menuName = menuArrays[indexPath.row].menuName else { return }
-            menuNameLabel.text = menuName
-            
+            menuNameLabel.text = menuName            
             menuImageView.kf.setImage(with: URL(string: menuArrays[indexPath.row].menuImageUrl))
         }
     }

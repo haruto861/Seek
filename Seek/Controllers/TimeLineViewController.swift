@@ -30,7 +30,7 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
     // 二重配列
     var postCustom = [[String]]()
     var postCustomImage = [[String]]()
-    var selctedIndex: IndexPath!
+    var selctedIndex: IndexPath?
     var selectedIndex2 : IndexPath!
     // ブロックしたユーザーのIdを格納する変数
     var blockUserIdArray = [String]()
@@ -220,28 +220,21 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
                         }
                     })
                 }
-                deleteButton.backgroundColor = UIColor.red // 色変更
+                deleteButton.backgroundColor = UIColor.red 
                 return [deleteButton]
             }
         }
-    // ③ ブロックしたユーザーを持ってくる
+
     func getBlockUser() {
-            // ブロッククラスに検索をかける
             let query = NCMBQuery(className: "Block")
-            // bincludeKeyでBlockの子クラスである会員情報を持ってきている
             query?.includeKey("user")
-            // ユーザーが自分と一致した場合
             query?.whereKey("user", equalTo: NCMBUser.current())
-            //　データを検索
             query?.findObjectsInBackground({ (result, error) in
                 if error != nil {
-                    // エラーの処理
                 } else {
-                    // ブロックされたユーザーのIDが含まれる + removeall()は初期化していて、データの重複を防いでいる
                     self.blockUserIdArray.removeAll()
                     print(result)
                     for blockObject in result as? [NCMBObject] ?? [] {
-                        // この部分で①の配列にブロックユーザー情報が格納
     self.blockUserIdArray.append(blockObject.object(forKey: "blockUserID") as? String ?? "")
                     }
 
@@ -249,69 +242,58 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
             })
         loadData()
         }
-    // ②
+
     func loadData() {
-    // ここにNCMBから値を持ってくるコードが書いてある前提
         let query = NCMBQuery(className: "post")
         query?.order(byDescending: "createDate")
         query?.includeKey("userName")
         query?.findObjectsInBackground({ (results, error) in
-            
             if error != nil {
-                print(error)
             } else {
-                print(results)
                 self.posts = [Post]()
                 for text in results as? [NCMBObject] ?? [] {
-                    guard  let user  = text.object(forKey: "userName") as? NCMBUser else {
-
-                        return
-                    }
+                    guard  let user  = text.object(forKey: "userName") as? NCMBUser else { return }
                     user.userName = user.object(forKey: "userName") as? String
-
                     let userModel = User(objectId: user.objectId, userName: user.userName)
                     self.menuName = text.object(forKey: "menuName") as? String
-                    // 初めにurlを取得して、kingfisherで引っ張ってくる
                     self.menuImageUrl = text.object(forKey: "menuImage") as? String
-                    // カスタマイズの画像urlも同様に取得
                     self.customImageUrl = text.object(forKey: "customImage") as? [String] ?? []
                     self.postedCustomizes = text.object(forKey: "toppings") as? [String] ?? []
-                    print(self.postedCustomizes)
                     self.prePostCalorie = text.object(forKey: "postCalorie") as? Int ?? 0
                     self.postCalorie = String(self.prePostCalorie)
                     self.prePostPrice = text.object(forKey: "postPrice") as? Int ?? 0
                     self.postPrice = String(self.prePostPrice)
                     self.objectId = text.object(forKey: "objectId") as? String
-                    // appendする時に、ブロックユーザーがnilであったらappendされるようにしている。
                     let post = Post(menuName: self.menuName, user: userModel, menuImage: self.menuImageUrl, totalPrice: self.postPrice, totalCalorie: self.postCalorie, createDate: text.createDate, toppings: self.postedCustomizes, customImage: self.customImageUrl, objectId: self.objectId)
-
                     if self.blockUserIdArray.firstIndex(of: post.user.objectId) == nil {
                         self.posts.append(post)
-
                     }
                 }
-
             }
             self.timeLineTableView.reloadData()
         })
-
     }
 }
    extension TimeLineViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return posts[selctedIndex.row].toppings.count
+        if postedCustomizes.isEmpty {
+            return 0
+        } else {
+            return postedCustomizes.count
+        }
     }
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
             return UIEdgeInsets(top: 3, left: 3, bottom: 3, right: 3)
     }
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
 
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomizeCell", for: indexPath) as? TimeLineCollectionViewCell else {
             abort()
-
         }
-        cell.selectedCusomizeLabel.text = posts[selctedIndex.row].toppings[indexPath.row]
-        cell.selectedCustomizeImage.kf.setImage(with: URL(string: posts[selctedIndex.row].customImage[indexPath.row]))
+        cell.indexPath = indexPath
+        cell.customize = postedCustomizes
+        cell.customizeImage = customImageUrl
         return cell
     }
 }
