@@ -11,50 +11,22 @@ import Kingfisher
 import KRProgressHUD
 
 class TimeLineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    
-    @IBOutlet var timeLineTableView: UITableView!
-    
-    var posts =  [Post]()
-    
-    var prePostCalorie = 0
-    var prePostPrice = 0
-    
-    var postCalorie: String!
-    var postPrice: String!
-    var menuName: String!
-    var menuImageUrl: String!
-    var prePostImage: UIImage!
-    var postedCustomizes = [String]()
-    var customImageUrl = [String]()
-    // 二重配列
-    var postCustom = [[String]]()
-    var postCustomImage = [[String]]()
-    var selctedIndex: IndexPath?
-    var selectedIndex2 : IndexPath!
-    // ブロックしたユーザーのIdを格納する変数
-    var blockUserIdArray = [String]()
-    var objectId: String!
+    @IBOutlet private var timeLineTableView: UITableView!
+    private var posts =  [Post]()
+    private var customizes = [String]()
+    private var customImageUrls = [String]()
+    private var blockUserIdArray = [String]()
+    private var objectId: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            self.navigationController!.navigationBar.shadowImage = UIImage()
-        
-        // セルが潰れないように高さを設定
         timeLineTableView.rowHeight = 188
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self
-        
-        // 区切り線をなくす
         timeLineTableView.separatorStyle = .none
 
-        // nibの登録
         let nib = UINib(nibName: "TimeLineTableViewCell", bundle: Bundle.main)
-        // reuseセルとして登録
         timeLineTableView.register(nib, forCellReuseIdentifier: "TimeLineCell")
-        
         setRefreshControl()
     }
 
@@ -62,37 +34,17 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
         getBlockUser()
         loadData()
     }
-    
-    // 表示されるセルの個数
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
-        
     }
-    // 表示されるセルの内容
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //  UItableViewCell型に変換して代入
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineCell") as? TimeLineTableViewCell else {
             abort()
-
         }
-        
-        cell.mainBackground.layer.cornerRadius = 8
-        cell.mainBackground.layer.masksToBounds = true
-        cell.backgroundColor = .systemGray6
-        cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
-        
-        self.selctedIndex = indexPath
-
-        cell.postPriceLabel.text = posts[indexPath.row].totalPrice
-        cell.postCalorieLable.text = posts[indexPath.row].totalCalorie
-        cell.postMenuNameLabel.text = posts[indexPath.row].menuName
-        
-        let user = posts[indexPath.row].user
-        let userImageUrl = "https://mbaas.api.nifcloud.com/2013-09-01/applications/LwINpgUX9Mz5et6L/publicFiles/" + user!.objectId
-              cell.userImage.kf.setImage (with: URL (string: userImageUrl), placeholder: UIImage (named: "placeholder.jpg"))
-        cell.userNameLabel.text = user?.userName
-        print(posts[indexPath.row].menuImage!,"self")
-        cell.postImage.kf.setImage(with: URL(string: self.posts[indexPath.row].menuImage!))
+        cell.post = posts
+        cell.indexPath = indexPath
         return cell
     }
 
@@ -104,34 +56,27 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @objc func reloadTimeline(refreshControl: UIRefreshControl) {
         refreshControl.beginRefreshing()
-        // 更新が早すぎるので2秒遅延させる
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
             refreshControl.endRefreshing()
         }
     }
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? TimeLineTableViewCell else { return }
-        // ShopTableViewCell.swiftで設定したメソッドを呼び出す
         cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
-    
-    // ① 自分以外＝>報告・ブロックする
-        func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-            // 選択した投稿のobjectIdが自分のと異なっていた場合
-            if posts[indexPath.row].user.objectId != NCMBUser.current()?.objectId {
-                let reportButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "報告") { (action, index) -> Void in
-                    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                    let reportAction = UIAlertAction(title: "報告する", style: .destructive ){ (action) in
-                        KRProgressHUD.showSuccess(withMessage: "この投稿を報告しました。ご協力ありがとうございました。")
-                        // 新たにクラスを作成する
-                        let object = NCMBObject(className: "Report")
-                        // "reportId"に選択したセルのobjectIdをセットする
-                        object?.setObject(self.posts[indexPath.row].objectId, forKey: "reportId")
-                        // "user"に自分自身のユーザーデータをセット
-                        object?.setObject(NCMBUser.current(), forKey: "user")
-                        // それらを保存する
-                        object?.saveInBackground({ (error) in
-                            if error != nil {
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if posts[indexPath.row].user.objectId != NCMBUser.current()?.objectId {
+            let reportButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "報告") { (action, index) -> Void in
+                let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let reportAction = UIAlertAction(title: "報告する", style: .destructive ){ (action) in
+                    KRProgressHUD.showSuccess(withMessage: "この投稿を報告しました。ご協力ありがとうございました。")
+                    let object = NCMBObject(className: "Report")
+                    object?.setObject(self.posts[indexPath.row].objectId, forKey: "reportId")
+                    object?.setObject(NCMBUser.current(), forKey: "user")
+                    object?.saveInBackground({ (error) in
+                        if error != nil {
                                 KRProgressHUD.showError(withMessage: "エラーです。")
                             } else {
                                 KRProgressHUD.dismiss()
@@ -139,36 +84,29 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
                             }
                         })
                     }
-                    let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
-                        alertController.dismiss(animated: true, completion: nil)
-                    }
-
-                    alertController.addAction(reportAction)
-                    alertController.addAction(cancelAction)
-                    self.present(alertController, animated: true, completion: nil)
-                    tableView.isEditing = false
-
+                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
+                    alertController.dismiss(animated: true, completion: nil)
                 }
-                reportButton.backgroundColor = UIColor.red
-                let blockButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "ブロック") { (action, index) -> Void in
-                    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-                    let blockAction = UIAlertAction(title: "ブロックする", style: .destructive) { (action) in
-                        KRProgressHUD.showSuccess(withMessage: "このユーザーをブロックしました。")
-                        // Blockのクラスを作成
-                        let object = NCMBObject(className: "Block")
-                        // 選択されたセルのobjectIdを"blockuserId"にセットする
-                        object?.setObject(self.posts[indexPath.row].user.objectId, forKey: "blockUserID")
-                        // 選択したセルのユーザーデータを"user"にセットする
-                        object?.setObject(NCMBUser.current(), forKey: "user")
-                        // それらを保存する
-                        object?.saveInBackground({ (error) in
-                            if error != nil {
-                                KRProgressHUD.showError(withMessage: "エラーです")
-                            } else {
-                                KRProgressHUD.dismiss()
-                                tableView.deselectRow(at: indexPath, animated: true)
-                               // ここで③を読み込んでいる
-                                self.getBlockUser()
+                alertController.addAction(reportAction)
+                alertController.addAction(cancelAction)
+                self.present(alertController, animated: true, completion: nil)
+                tableView.isEditing = false
+            }
+            reportButton.backgroundColor = UIColor.red
+            let blockButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "ブロック") { (action, index) -> Void in
+                let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+                let blockAction = UIAlertAction(title: "ブロックする", style: .destructive) { (action) in
+                    KRProgressHUD.showSuccess(withMessage: "このユーザーをブロックしました。")
+                    let object = NCMBObject(className: "Block")
+                    object?.setObject(self.posts[indexPath.row].user.objectId, forKey: "blockUserID")
+                    object?.setObject(NCMBUser.current(), forKey: "user")
+                    object?.saveInBackground({ (error) in
+                        if error != nil {
+                            KRProgressHUD.showError(withMessage: "エラーです")
+                        } else {
+                            KRProgressHUD.dismiss()
+                            tableView.deselectRow(at: indexPath, animated: true)
+                            self.getBlockUser()
                             }
                         })
 
@@ -191,7 +129,6 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
                         if error != nil {
                             KRProgressHUD.showError(withMessage: "エラーです")
                             KRProgressHUD.show()
-
                         } else {
                             DispatchQueue.main.async {
                                 let alertController = UIAlertController(title: "投稿を削除しますか？", message: "削除します", preferredStyle: .alert)
@@ -233,11 +170,9 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
                 if error != nil {
                 } else {
                     self.blockUserIdArray.removeAll()
-                    print(result)
                     for blockObject in result as? [NCMBObject] ?? [] {
-    self.blockUserIdArray.append(blockObject.object(forKey: "blockUserID") as? String ?? "")
+                        self.blockUserIdArray.append(blockObject.object(forKey: "blockUserID") as? String ?? "")
                     }
-
                 }
             })
         loadData()
@@ -248,38 +183,37 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
         query?.order(byDescending: "createDate")
         query?.includeKey("userName")
         query?.findObjectsInBackground({ (results, error) in
-            if error != nil {
-            } else {
-                self.posts = [Post]()
-                for text in results as? [NCMBObject] ?? [] {
-                    guard  let user  = text.object(forKey: "userName") as? NCMBUser else { return }
-                    user.userName = user.object(forKey: "userName") as? String
-                    let userModel = User(objectId: user.objectId, userName: user.userName)
-                    self.menuName = text.object(forKey: "menuName") as? String
-                    self.menuImageUrl = text.object(forKey: "menuImage") as? String
-                    self.customImageUrl = text.object(forKey: "customImage") as? [String] ?? []
-                    self.postedCustomizes = text.object(forKey: "toppings") as? [String] ?? []
-                    self.prePostCalorie = text.object(forKey: "postCalorie") as? Int ?? 0
-                    self.postCalorie = String(self.prePostCalorie)
-                    self.prePostPrice = text.object(forKey: "postPrice") as? Int ?? 0
-                    self.postPrice = String(self.prePostPrice)
-                    self.objectId = text.object(forKey: "objectId") as? String
-                    let post = Post(menuName: self.menuName, user: userModel, menuImage: self.menuImageUrl, totalPrice: self.postPrice, totalCalorie: self.postCalorie, createDate: text.createDate, toppings: self.postedCustomizes, customImage: self.customImageUrl, objectId: self.objectId)
+            self.posts = [Post]()
+            guard let postDatas = results as? [NCMBObject]  else { return }
+            for postData in postDatas {
+                guard let user  = postData.object(forKey: "userName") as? NCMBUser else { return }
+                user.userName = user.object(forKey: "userName") as? String
+                let userModel = User(objectId: user.objectId, userName: user.userName)
+                guard let menuName = postData.object(forKey: "menuName") as? String else { return }
+                guard let menuImageUrl = postData.object(forKey: "menuImage") as? String else { return }
+                guard let prePostCalorie = postData.object(forKey: "postCalorie") as? Int else { return }
+                let postCalorie = "\(prePostCalorie)"
+                guard let prePostPrice = postData.object(forKey: "postPrice") as? Int else { return }
+                let postPrice = "\(prePostPrice)"
+                self.customImageUrls = postData.object(forKey: "customImage") as? [String] ?? []
+                self.customizes = postData.object(forKey: "toppings") as? [String] ?? []
+                self.objectId = postData.object(forKey: "objectId") as? String
+                let post = Post(menuName: menuName, user: userModel, menuImage: menuImageUrl, totalPrice: postPrice, totalCalorie: postCalorie, createDate: postData.createDate, toppings: self.customizes, customImage: self.customImageUrls, objectId: self.objectId)
                     if self.blockUserIdArray.firstIndex(of: post.user.objectId) == nil {
                         self.posts.append(post)
                     }
                 }
-            }
             self.timeLineTableView.reloadData()
         })
     }
 }
-   extension TimeLineViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
+extension TimeLineViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if postedCustomizes.isEmpty {
+        if customizes.isEmpty {
             return 0
         } else {
-            return postedCustomizes.count
+            return customizes.count
         }
     }
 
@@ -292,8 +226,8 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
             abort()
         }
         cell.indexPath = indexPath
-        cell.customize = postedCustomizes
-        cell.customizeImage = customImageUrl
+        cell.customize = customizes
+        cell.customizeImage = customImageUrls
         return cell
     }
 }

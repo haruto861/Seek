@@ -58,12 +58,11 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.postPriceLabel.text = posts[indexPath.row].totalPrice
         cell.postCalorieLable.text = posts[indexPath.row].totalCalorie
         cell.postMenuNameLabel.text = posts[indexPath.row].menuName
-        print(posts[indexPath.row].menuImage!,"self")
-        cell.postImage.kf.setImage(with: URL(string: self.posts[indexPath.row].menuImage!))
+        cell.postMenuImage.kf.setImage(with: URL(string: self.posts[indexPath.row].menuImage!))
         let user = posts[indexPath.row].user
         let userImageUrl = "https://mbaas.api.nifcloud.com/2013-09-01/applications/LwINpgUX9Mz5et6L/publicFiles/" + user!.objectId
-              cell.userImage.kf.setImage (with: URL (string: userImageUrl), placeholder: UIImage (named: "placeholder.jpg"))
-        cell.userNameLabel.text = user?.userName
+              cell.postUserImage.kf.setImage (with: URL (string: userImageUrl), placeholder: UIImage (named: "placeholder.jpg"))
+        cell.postUserNameLabel.text = user?.userName
         return cell
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

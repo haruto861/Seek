@@ -126,13 +126,13 @@
             <connections>
                 <outlet property="mainBackground" destination="ETV-DE-GIN" id="Vta-e9-Pxw"/>
                 <outlet property="postCalorieLable" destination="zhD-f7-q18" id="OE3-nr-SUh"/>
-                <outlet property="postImage" destination="jfj-Tt-BuX" id="ite-SG-85f"/>
+                <outlet property="postMenuImage" destination="jfj-Tt-BuX" id="QpE-xS-dct"/>
                 <outlet property="postMenuNameLabel" destination="avg-ZN-ATN" id="Nsc-8H-gO8"/>
                 <outlet property="postPriceLabel" destination="j48-HY-Dfq" id="TLv-De-cda"/>
+                <outlet property="postUserImage" destination="zbj-aI-8vc" id="hnm-Kb-1rI"/>
+                <outlet property="postUserNameLabel" destination="JV7-zD-CVm" id="xP9-9t-yiM"/>
                 <outlet property="selectedCustomizeCollectionView" destination="jRH-yn-LLF" id="Frs-Qy-n7A"/>
                 <outlet property="shadowLayer" destination="AYc-xG-mL3" id="sok-6k-Uda"/>
-                <outlet property="userImage" destination="zbj-aI-8vc" id="XCi-YN-9AW"/>
-                <outlet property="userNameLabel" destination="JV7-zD-CVm" id="FD3-or-Sdt"/>
             </connections>
             <point key="canvasLocation" x="36.956521739130437" y="322.09821428571428"/>
         </tableViewCell>

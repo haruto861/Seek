@@ -30,6 +30,7 @@ class TimeLineCollectionViewCell: UICollectionViewCell {
         let customizeImageArray = customizeImage
         selectedCustomizeImage.kf.setImage(with: URL(string: customizeImageArray[indexPath.row]))
         
+        
     }
 
 }
