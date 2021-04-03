@@ -18,6 +18,8 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
     private var blockUserIdArray = [String]()
     private var objectId: String!
 
+    var tableViewIndex: IndexPath?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         timeLineTableView.rowHeight = 188
@@ -69,98 +71,96 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if posts[indexPath.row].user.objectId != NCMBUser.current()?.objectId {
             let reportButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "報告") { (action, index) -> Void in
-                let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 let reportAction = UIAlertAction(title: "報告する", style: .destructive ){ (action) in
                     KRProgressHUD.showSuccess(withMessage: "この投稿を報告しました。ご協力ありがとうございました。")
                     let object = NCMBObject(className: "Report")
                     object?.setObject(self.posts[indexPath.row].objectId, forKey: "reportId")
                     object?.setObject(NCMBUser.current(), forKey: "user")
                     object?.saveInBackground({ (error) in
-                        if error != nil {
-                                KRProgressHUD.showError(withMessage: "エラーです。")
-                            } else {
-                                KRProgressHUD.dismiss()
-                                tableView.deselectRow(at: indexPath, animated: true)
-                            }
+                        guard (error == nil) else {
+                            KRProgressHUD.showError(withMessage: "エラーです")
+                            return
+                        }
+                        KRProgressHUD.dismiss()
+                        tableView.deselectRow(at: indexPath, animated: true)
                         })
                     }
                 let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
-                    alertController.dismiss(animated: true, completion: nil)
                 }
-                alertController.addAction(reportAction)
-                alertController.addAction(cancelAction)
-                self.present(alertController, animated: true, completion: nil)
+                self.showAlert(title: "報告", message: "投稿を報告しますか", preferredStyle: .actionSheet, actions: [reportAction, cancelAction])
                 tableView.isEditing = false
             }
             reportButton.backgroundColor = UIColor.red
             let blockButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "ブロック") { (action, index) -> Void in
-                let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 let blockAction = UIAlertAction(title: "ブロックする", style: .destructive) { (action) in
                     KRProgressHUD.showSuccess(withMessage: "このユーザーをブロックしました。")
                     let object = NCMBObject(className: "Block")
                     object?.setObject(self.posts[indexPath.row].user.objectId, forKey: "blockUserID")
                     object?.setObject(NCMBUser.current(), forKey: "user")
                     object?.saveInBackground({ (error) in
-                        if error != nil {
+                        guard (error == nil) else {
                             KRProgressHUD.showError(withMessage: "エラーです")
-                        } else {
-                            KRProgressHUD.dismiss()
-                            tableView.deselectRow(at: indexPath, animated: true)
-                            self.getBlockUser()
-                            }
+                            return
+                        }
+                        KRProgressHUD.dismiss()
+                        self.getBlockUser()
+                        tableView.deselectRow(at: indexPath, animated: true)
                         })
-
                     }
                     let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
-                        alertController.dismiss(animated: true, completion: nil)
                     }
-
-                    alertController.addAction(blockAction)
-                    alertController.addAction(cancelAction)
-                    self.present(alertController, animated: true, completion: nil)
+                self.showAlert(title: "ブロック", message: "ブロックしますか", preferredStyle: .actionSheet, actions: [blockAction, cancelAction])
                     tableView.isEditing = false
                 }
                 blockButton.backgroundColor = UIColor.blue
                 return[blockButton,reportButton]
-            } else {
-                let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
-                    let query = NCMBQuery(className: "post")
-                    query?.getObjectInBackground(withId: self.posts[indexPath.row].objectId, block: { (post, error) in
-                        if error != nil {
-                            KRProgressHUD.showError(withMessage: "エラーです")
-                            KRProgressHUD.show()
-                        } else {
-                            DispatchQueue.main.async {
-                                let alertController = UIAlertController(title: "投稿を削除しますか？", message: "削除します", preferredStyle: .alert)
-                                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
-                                    alertController.dismiss(animated: true, completion: nil)
-                                }
-                                let deleteAction = UIAlertAction(title: "OK", style: .default) { (acrion) in
-                                    post?.deleteInBackground({ (error) in
-                                        if error != nil {
-                                            KRProgressHUD.showError(withMessage: "エラーです")
-                                            KRProgressHUD.dismiss()
-
-                                        } else {
+        } else {
+            let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
+                let query = NCMBQuery(className: "post")
+                query?.getObjectInBackground(withId: self.posts[indexPath.row].objectId, block: { (post, error) in
+                    guard (error == nil) else {
+                        KRProgressHUD.showError(withMessage: "エラーです")
+                        KRProgressHUD.show()
+                            return
+                    }
+                    DispatchQueue.main.async {
+                        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in }
+                        let deleteAction = UIAlertAction(title: "OK", style: .default) { (acrion) in
+                                post?.deleteInBackground({ (error) in
+                                        guard (error != nil) else {
                                             tableView.deselectRow(at: indexPath, animated: true)
                                             self.loadData()
                                             self.timeLineTableView.reloadData()
+                                            return
                                         }
+                                        KRProgressHUD.showError(withMessage: "エラーです")
+                                        KRProgressHUD.dismiss()
                                     })
                                 }
-                                alertController.addAction(cancelAction)
-                                alertController.addAction(deleteAction)
-                                self.present(alertController,animated: true,completion: nil)
-                                tableView.isEditing = false
-                            }
-
-                        }
+                        self.showAlert(title: "投稿を削除しますか", message: "削除します", preferredStyle: .alert, actions: [cancelAction, deleteAction])
+                        tableView.isEditing = false
+                    }
                     })
                 }
                 deleteButton.backgroundColor = UIColor.red 
                 return [deleteButton]
             }
         }
+
+
+    // リファクタリング
+    func showAlert(title: String, message: String, preferredStyle: UIAlertController.Style , actions: [UIAlertAction]) {
+        let alert  = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: preferredStyle
+        )
+        // $0が要素
+        actions.forEach {alert.addAction($0)}
+        present(alert, animated: true, completion: nil)
+    }
+
+
 
     func getBlockUser() {
             let query = NCMBQuery(className: "Block")
@@ -177,6 +177,7 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
             })
         loadData()
         }
+
 
     func loadData() {
         let query = NCMBQuery(className: "post")
