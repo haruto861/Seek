@@ -30,3 +30,4 @@ class Post: NSObject {
            self.customImage = customImage
     }
 }
+

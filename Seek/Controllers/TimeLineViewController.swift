@@ -20,13 +20,14 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+     
         timeLineTableView.rowHeight = 188
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self
         timeLineTableView.separatorStyle = .none
 
         let nib = UINib(nibName: "TimeLineTableViewCell", bundle: Bundle.main)
-        timeLineTableView.register(nib, forCellReuseIdentifier: "TimeLineCell")
+        timeLineTableView.register(nib, forCellReuseIdentifier: "TimeLineTableViewCell")
         setRefreshControl()
     }
 
@@ -40,11 +41,10 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineCell") as? TimeLineTableViewCell else {
-            abort()
-        }
-        cell.post = posts
-        cell.indexPath = indexPath
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineTableViewCell") as! TimeLineTableViewCell
+        let user = posts[indexPath.row].user!
+        let userImageUrl = "https://mbaas.api.nifcloud.com/2013-09-01/applications/LwINpgUX9Mz5et6L/publicFiles/" + user.objectId
+        cell.configure(allPost: posts[indexPath.row], user: user, userImageUrl: userImageUrl)
         return cell
     }
 
@@ -69,23 +69,13 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if posts[indexPath.row].user.objectId != NCMBUser.current()?.objectId {
-            let reportButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "報告") { (action, index) -> Void in
-                let reportAction = self.reportAction(repotId: self.posts[indexPath.row].objectId)
-                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in }
-                self.showAlert(title: "報告", message: "投稿を報告しますか", preferredStyle: .actionSheet, actions: [reportAction, cancelAction])
-                tableView.isEditing = false
-            }
+            let reportButton = self.buttonAction(buttonTitle: "報告", selectedAction: self.reportAction(repotId: posts[indexPath.row].objectId), alertTitle: "報告", message: "投稿を報告しますか")
             reportButton.backgroundColor = UIColor.red
-            let blockButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "ブロック") { (action, index) -> Void in
-                let blockAction = self.blockAction(blockId: self.posts[indexPath.row].user.objectId)
-                let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in }
-                self.showAlert(title: "ブロック", message: "ブロックしますか", preferredStyle: .actionSheet, actions: [blockAction, cancelAction])
-                tableView.isEditing = false
-            }
+            let blockButton = buttonAction(buttonTitle: "ブロック", selectedAction: self.blockAction(blockId: posts[indexPath.row].user.objectId), alertTitle: "ブロック", message: "ブロックしますか")
             blockButton.backgroundColor = UIColor.blue
             return[blockButton,reportButton]
         } else {
-            let deleteButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
+            let deleteButton  = UITableViewRowAction(style: .normal, title: "削除") { (action, index) -> Void in
                 let query = NCMBQuery(className: "post")
                 query?.getObjectInBackground(withId: self.posts[indexPath.row].objectId, block: { (post, error) in
                     guard (error == nil) else {
@@ -105,6 +95,15 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
             deleteButton.backgroundColor = UIColor.red
             return [deleteButton]
         }
+    }
+
+    private func buttonAction(buttonTitle: String, selectedAction: UIAlertAction, alertTitle: String, message: String) -> UITableViewRowAction {
+        let button = UITableViewRowAction(style: .normal, title: buttonTitle) { (action, index) -> Void in
+            let selectedAction = selectedAction
+            let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in }
+            self.showAlert(title: "ブロック", message: "ブロックしますか", preferredStyle: .actionSheet, actions: [selectedAction, cancelAction])
+        }
+        return button
     }
 
     private func reportAction(repotId: String) -> UIAlertAction {
@@ -145,25 +144,21 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
     private func deleteAction(post: NCMBObject) -> UIAlertAction {
         let deleteAction = UIAlertAction(title: "OK", style: .default) { (acrion) in
             post.deleteInBackground({ (error) in
-                guard (error != nil) else {
-                    KRProgressHUD.showSuccess(withMessage: "削除完了")
-                    self.loadData()
-                    self.timeLineTableView.reloadData()
+                guard (error == nil) else {
+                    KRProgressHUD.showError(withMessage: "エラーです")
+                    KRProgressHUD.dismiss()
                     return
                 }
-                KRProgressHUD.showError(withMessage: "エラーです")
-                KRProgressHUD.dismiss()
+                KRProgressHUD.showSuccess(withMessage: "削除完了")
+                self.loadData()
+                self.timeLineTableView.reloadData()
             })
         }
         return deleteAction
     }
 
     private func showAlert(title: String, message: String, preferredStyle: UIAlertController.Style , actions: [UIAlertAction]) {
-        let alert  = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: preferredStyle
-        )
+        let alert  = UIAlertController(title: title, message: message, preferredStyle: preferredStyle )
         actions.forEach {alert.addAction($0)}
         present(alert, animated: true, completion: nil)
     }
@@ -189,22 +184,24 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
         query?.order(byDescending: "createDate")
         query?.includeKey("userName")
         query?.findObjectsInBackground({ (results, error) in
-            self.posts = [Post]()
             guard let postDatas = results as? [NCMBObject]  else { return }
+            self.setData(datas: postDatas)
             for postData in postDatas {
                 guard let user  = postData.object(forKey: "userName") as? NCMBUser else { return }
-                user.userName = user.object(forKey: "userName") as? String
-                let userModel = User(objectId: user.objectId, userName: user.userName)
                 guard let menuName = postData.object(forKey: "menuName") as? String else { return }
                 guard let menuImageUrl = postData.object(forKey: "menuImage") as? String else { return }
                 guard let prePostCalorie = postData.object(forKey: "postCalorie") as? Int else { return }
-                let postCalorie = "\(prePostCalorie)"
                 guard let prePostPrice = postData.object(forKey: "postPrice") as? Int else { return }
+                user.userName = user.object(forKey: "userName") as? String
+                let userModel = User(objectId: user.objectId, userName: user.userName)
                 let postPrice = "\(prePostPrice)"
+                let postCalorie = "\(prePostCalorie)"
                 self.customImageUrls = postData.object(forKey: "customImage") as? [String] ?? []
                 self.customizes = postData.object(forKey: "toppings") as? [String] ?? []
                 self.objectId = postData.object(forKey: "objectId") as? String
+                // 初期化している
                 let post = Post(menuName: menuName, user: userModel, menuImage: menuImageUrl, totalPrice: postPrice, totalCalorie: postCalorie, createDate: postData.createDate, toppings: self.customizes, customImage: self.customImageUrls, objectId: self.objectId)
+
                 if self.blockUserIdArray.firstIndex(of: post.user.objectId) == nil {
                     self.posts.append(post)
                 }
@@ -212,6 +209,11 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
             self.timeLineTableView.reloadData()
         })
     }
+
+    func setData(datas: [NCMBObject]) {
+    }
+
+
 }
 
 extension TimeLineViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -228,7 +230,7 @@ extension TimeLineViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomizeCell", for: indexPath) as? TimeLineCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TimeLineCollectionViewCell.id, for: indexPath) as? TimeLineCollectionViewCell else {
             abort()
         }
         cell.indexPath = indexPath

@@ -39,7 +39,7 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
         // nibの登録
         let nib = UINib(nibName: "TimeLineTableViewCell", bundle: Bundle.main)
         // reuseセルとして登録
-        timeLineTableView.register(nib, forCellReuseIdentifier: "TimeLineCell")
+        timeLineTableView.register(nib, forCellReuseIdentifier: "TimeLineTableViewCell")
         loadData()
         getBlockUser()
     }
@@ -51,7 +51,7 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //  UItableViewCell型に変換して代入
         selectedIndex = indexPath
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineCell") as? TimeLineTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineTableViewCell") as? TimeLineTableViewCell else {
             abort()
         }
         cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
@@ -335,7 +335,7 @@ extension UserPageViewController: UICollectionViewDataSource, UICollectionViewDe
         return  postedCustomizes.count
 }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomizeCell", for: indexPath) as? TimeLineCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TimeLineCollectionViewCell.id, for: indexPath) as? TimeLineCollectionViewCell else {
             abort()
         }
         cell.selectedCusomizeLabel.text = posts[selectedIndex.row].toppings[indexPath.row]
