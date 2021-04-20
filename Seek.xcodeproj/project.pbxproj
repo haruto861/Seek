@@ -50,6 +50,7 @@
 		F15113F12566C58600C17F95 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F15113F02566C58600C17F95 /* TabBarViewController.swift */; };
 		F17CF71A25669E7500AAC09A /* addBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17CF71925669E7500AAC09A /* addBackground.swift */; };
 		F1879C6F2574D14A00FF7C50 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1879C6E2574D14A00FF7C50 /* LaunchScreenViewController.swift */; };
+		F1982F8B2624177700D32F61 /* getData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1982F8A2624177700D32F61 /* getData.swift */; };
 		F1B3E53325303DFC002A3557 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B3E53225303DFC002A3557 /* AppDelegate.swift */; };
 		F1B3E53525303DFC002A3557 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B3E53425303DFC002A3557 /* SceneDelegate.swift */; };
 		F1B3E53A25303DFC002A3557 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F1B3E53825303DFC002A3557 /* Main.storyboard */; };
@@ -171,6 +172,7 @@
 		F15113F02566C58600C17F95 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		F17CF71925669E7500AAC09A /* addBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addBackground.swift; sourceTree = "<group>"; };
 		F1879C6E2574D14A00FF7C50 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
+		F1982F8A2624177700D32F61 /* getData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getData.swift; sourceTree = "<group>"; };
 		F1B3E52F25303DFC002A3557 /* Seek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F1B3E53225303DFC002A3557 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F1B3E53425303DFC002A3557 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 				F14E6512255AEB7A0026111E /* User.swift */,
 				F12B026126034522003314D7 /* Menu.swift */,
 				F12B027826037B93003314D7 /* Customize.swift */,
+				F1982F8A2624177700D32F61 /* getData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -799,6 +802,7 @@
 				F1117F65258E38A90091F289 /* ShadowView.swift in Sources */,
 				F12B027926037B93003314D7 /* Customize.swift in Sources */,
 				F1B3E53325303DFC002A3557 /* AppDelegate.swift in Sources */,
+				F1982F8B2624177700D32F61 /* getData.swift in Sources */,
 				F13EE19B254A956D00323EBF /* TimeLineTableViewCell.swift in Sources */,
 				F1B48187253D609900D61A95 /* CustomizeTableViewCell.swift in Sources */,
 				F1B3E53525303DFC002A3557 /* SceneDelegate.swift in Sources */,

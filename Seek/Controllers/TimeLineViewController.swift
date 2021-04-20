@@ -11,7 +11,7 @@ import Kingfisher
 import KRProgressHUD
 
 class TimeLineViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet private var timeLineTableView: UITableView!
+    @IBOutlet weak var timeLineTableView: UITableView!
     private var posts =  [Post]()
     private var customizes = [String]()
     private var customImageUrls = [String]()
@@ -20,6 +20,7 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
      
         timeLineTableView.rowHeight = 188
         timeLineTableView.delegate = self
@@ -101,7 +102,7 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
         let button = UITableViewRowAction(style: .normal, title: buttonTitle) { (action, index) -> Void in
             let selectedAction = selectedAction
             let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in }
-            self.showAlert(title: "ブロック", message: "ブロックしますか", preferredStyle: .actionSheet, actions: [selectedAction, cancelAction])
+            self.showAlert(title: alertTitle, message: message, preferredStyle: .actionSheet, actions: [selectedAction, cancelAction])
         }
         return button
     }
@@ -185,7 +186,6 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
         query?.includeKey("userName")
         query?.findObjectsInBackground({ (results, error) in
             guard let postDatas = results as? [NCMBObject]  else { return }
-            self.setData(datas: postDatas)
             for postData in postDatas {
                 guard let user  = postData.object(forKey: "userName") as? NCMBUser else { return }
                 guard let menuName = postData.object(forKey: "menuName") as? String else { return }
@@ -199,9 +199,7 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
                 self.customImageUrls = postData.object(forKey: "customImage") as? [String] ?? []
                 self.customizes = postData.object(forKey: "toppings") as? [String] ?? []
                 self.objectId = postData.object(forKey: "objectId") as? String
-                // 初期化している
                 let post = Post(menuName: menuName, user: userModel, menuImage: menuImageUrl, totalPrice: postPrice, totalCalorie: postCalorie, createDate: postData.createDate, toppings: self.customizes, customImage: self.customImageUrls, objectId: self.objectId)
-
                 if self.blockUserIdArray.firstIndex(of: post.user.objectId) == nil {
                     self.posts.append(post)
                 }
@@ -209,11 +207,6 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
             self.timeLineTableView.reloadData()
         })
     }
-
-    func setData(datas: [NCMBObject]) {
-    }
-
-
 }
 
 extension TimeLineViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

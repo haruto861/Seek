@@ -295,7 +295,7 @@ self.blockUserIdArray.append(blockObject.object(forKey: "blockUserID") as? Strin
     let query = NCMBQuery(className: "post")
     query?.order(byDescending: "createDate")
     query?.includeKey("userName")
-    query?.whereKey("userName", equalTo: NCMBUser.current())
+        query?.whereKey("userName", equalTo: NCMBUser.current())
     query?.findObjectsInBackground({ (results, error) in
         if error != nil {
             print(error)
