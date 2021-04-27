@@ -18,10 +18,11 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
     private var blockUserIdArray = [String]()
     private var objectId: String!
 
+    private var query: NCMBQuery!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-     
         timeLineTableView.rowHeight = 188
         timeLineTableView.delegate = self
         timeLineTableView.dataSource = self
@@ -181,7 +182,7 @@ class TimeLineViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     private func loadData() {
-        let query = NCMBQuery(className: "post")
+        query = NCMBQuery(className: "post")
         query?.order(byDescending: "createDate")
         query?.includeKey("userName")
         query?.findObjectsInBackground({ (results, error) in
