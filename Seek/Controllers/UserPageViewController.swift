@@ -39,7 +39,7 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
         // nibの登録
         let nib = UINib(nibName: "TimeLineTableViewCell", bundle: Bundle.main)
         // reuseセルとして登録
-        timeLineTableView.register(nib, forCellReuseIdentifier: "TimeLineCell")
+        timeLineTableView.register(nib, forCellReuseIdentifier: "TimeLineTableViewCell")
         loadData()
         getBlockUser()
     }
@@ -51,19 +51,18 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //  UItableViewCell型に変換して代入
         selectedIndex = indexPath
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineCell") as? TimeLineTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineTableViewCell") as? TimeLineTableViewCell else {
             abort()
         }
         cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
         cell.postPriceLabel.text = posts[indexPath.row].totalPrice
         cell.postCalorieLable.text = posts[indexPath.row].totalCalorie
         cell.postMenuNameLabel.text = posts[indexPath.row].menuName
-        print(posts[indexPath.row].menuImage!,"self")
-        cell.postImage.kf.setImage(with: URL(string: self.posts[indexPath.row].menuImage!))
+        cell.postMenuImage.kf.setImage(with: URL(string: self.posts[indexPath.row].menuImage!))
         let user = posts[indexPath.row].user
         let userImageUrl = "https://mbaas.api.nifcloud.com/2013-09-01/applications/LwINpgUX9Mz5et6L/publicFiles/" + user!.objectId
-              cell.userImage.kf.setImage (with: URL (string: userImageUrl), placeholder: UIImage (named: "placeholder.jpg"))
-        cell.userNameLabel.text = user?.userName
+              cell.postUserImage.kf.setImage (with: URL (string: userImageUrl), placeholder: UIImage (named: "placeholder.jpg"))
+        cell.postUserNameLabel.text = user?.userName
         return cell
     }
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -296,7 +295,7 @@ self.blockUserIdArray.append(blockObject.object(forKey: "blockUserID") as? Strin
     let query = NCMBQuery(className: "post")
     query?.order(byDescending: "createDate")
     query?.includeKey("userName")
-    query?.whereKey("userName", equalTo: NCMBUser.current())
+        query?.whereKey("userName", equalTo: NCMBUser.current())
     query?.findObjectsInBackground({ (results, error) in
         if error != nil {
             print(error)
@@ -336,7 +335,7 @@ extension UserPageViewController: UICollectionViewDataSource, UICollectionViewDe
         return  postedCustomizes.count
 }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomizeCell", for: indexPath) as? TimeLineCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TimeLineCollectionViewCell.id, for: indexPath) as? TimeLineCollectionViewCell else {
             abort()
         }
         cell.selectedCusomizeLabel.text = posts[selectedIndex.row].toppings[indexPath.row]

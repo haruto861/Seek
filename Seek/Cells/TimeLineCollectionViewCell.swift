@@ -8,14 +8,21 @@
 import UIKit
 
 class TimeLineCollectionViewCell: UICollectionViewCell {
+
+    static var toString: String {
+        return String(describing: self)
+    }
+    static let id = TimeLineCollectionViewCell.toString
+    static func nib() -> UINib {
+        UINib(nibName: TimeLineCollectionViewCell.toString, bundle: nil)
+    }
+
     @IBOutlet  weak var selectedCusomizeLabel: UILabel!
     @IBOutlet  weak var selectedCustomizeImage: UIImageView!
     var customize = [String]()
     var customizeImage = [String]()
     var indexPath: IndexPath?
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -29,7 +36,6 @@ class TimeLineCollectionViewCell: UICollectionViewCell {
         selectedCusomizeLabel.text = customizeArray[indexPath.row]
         let customizeImageArray = customizeImage
         selectedCustomizeImage.kf.setImage(with: URL(string: customizeImageArray[indexPath.row]))
-        
     }
 
 }
