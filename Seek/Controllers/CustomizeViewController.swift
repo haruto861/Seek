@@ -91,4 +91,10 @@ class CustomizeViewController: UIViewController,UITableViewDataSource, UITableVi
             self.customizeTableView.reloadData()
         })
     }
+
+    @IBAction func toPostVC(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Post", bundle: nil)
+        let nextView = storyboard.instantiateViewController(identifier: "Post") as! PostViewController
+        self.navigationController?.pushViewController(nextView, animated: true)
+    }
 }

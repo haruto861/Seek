@@ -43,7 +43,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             if error != nil {
             } else {
                 // 登録成功
-                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let storyboard = UIStoryboard(name: "TabBar", bundle: Bundle.main)
                 let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
                 UIApplication.shared.keyWindow?.rootViewController = rootViewController
                // ログイン状態の保持

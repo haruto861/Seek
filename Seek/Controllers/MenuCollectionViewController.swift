@@ -41,12 +41,13 @@ class CollectionViewController: UIViewController, UICollectionViewDataSource, UI
     }
  
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedIndex = indexPath
         let selectedMenu = menuArrays[indexPath.row].menuName
         let ud = UserDefaults.standard
         UserDefaults.standard.setValue(selectedMenu, forKey: "selected")
         ud.synchronize()
-        self.performSegue(withIdentifier: "toDetail", sender: nil)
+        let storyboard = UIStoryboard(name: "Customize", bundle: nil)
+        let nextView = storyboard.instantiateViewController(identifier: "Customize") as! DetailViewController
+        self.navigationController?.pushViewController(nextView, animated: true)
     }
 
     func getMenuData() {

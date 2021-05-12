@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // ログイン中だったら
             // ストーリーを動的に扱うコード
             self.window = UIWindow(frame: UIScreen.main.bounds)
-            let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+            let storyboard = UIStoryboard(name: "TabBar", bundle: Bundle.main)
             let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
             self.window?.rootViewController = rootViewController
             self.window?.makeKeyAndVisible()
