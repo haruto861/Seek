@@ -329,6 +329,7 @@ self.blockUserIdArray.append(blockObject.object(forKey: "blockUserID") as? Strin
         self.timeLineTableView.reloadData()
     })
     }
+
 }
 extension UserPageViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

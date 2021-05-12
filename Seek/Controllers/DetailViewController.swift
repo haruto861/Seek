@@ -53,8 +53,10 @@ class DetailViewController: UIViewController {
     }
 
     @IBAction func toCustomize() {
-        // idetifierが"toDetail"のsegueを使って画面遷移する関数
-        performSegue(withIdentifier: "toCustomize", sender: nil)
+        let storyboard = UIStoryboard(name: "AddCustomize", bundle: nil)
+        let nextView = storyboard.instantiateViewController(identifier: "AddCustomize") as! CustomizeViewController
+        self.navigationController?.pushViewController(nextView, animated: true)
+        
     }
 
     func loadData() {

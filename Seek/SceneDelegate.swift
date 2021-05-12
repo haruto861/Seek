@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: scene as! UIWindowScene)
             if isLogin == true {
                 // ログイン中だったら
-                let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+                let storyboard = UIStoryboard(name: "TabBar", bundle: Bundle.main)
                 let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootTabBarController")
                 self.window?.rootViewController = rootViewController
                 self.window?.backgroundColor = UIColor.white
