@@ -8,6 +8,7 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
+    
     @IBOutlet private weak var passedCustomizeLabel: UILabel!
     var customizeArrays = [Customize]()
     var indexPath: IndexPath?

@@ -11,9 +11,6 @@ class TabBarViewController: UITabBarController, UITabBarControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // タップしたときの色を変更
         tabBar.tintColor = UIColor.black
-                
-    }
-   
+    }   
 }

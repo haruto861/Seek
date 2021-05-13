@@ -9,10 +9,12 @@ import UIKit
 import NCMB
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
-    @IBOutlet var userTdTextField: UITextField!
-    @IBOutlet var emailTextField: UITextField!
-    @IBOutlet var passwordTextField: UITextField!
-    @IBOutlet var confirmTextFied: UITextField!
+
+    @IBOutlet private var userTdTextField: UITextField!
+    @IBOutlet private var emailTextField: UITextField!
+    @IBOutlet private var passwordTextField: UITextField!
+    @IBOutlet private var confirmTextFied: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -28,7 +30,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
 
-    @IBAction func signUp() {
+    @IBAction private func signUp() {
         let user = NCMBUser()
         if userTdTextField.text!.count <= 4 {
             return
@@ -42,11 +44,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         user.signUpInBackground { (error) in
             if error != nil {
             } else {
-                // 登録成功
                 let storyboard = UIStoryboard(name: "TabBar", bundle: Bundle.main)
                 let rootViewController = storyboard.instantiateViewController(identifier: "RootTabBarController")
                 UIApplication.shared.keyWindow?.rootViewController = rootViewController
-               // ログイン状態の保持
                 let ud = UserDefaults.standard
                 ud.setValue(true, forKey: "isLogin")
                 ud.synchronize()

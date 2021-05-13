@@ -41,14 +41,12 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let ud = UserDefaults.standard
-        // udのselecrtedキーの中身(コレクションビューで選択された物)を呼び出す
         passedMenu = ud.string(forKey: "selected")
         shadowView()
         loadData()
     }
 
     @IBAction func back() {
-        // 戻るコード
         self.dismiss(animated: true, completion: nil)
     }
 
@@ -66,7 +64,6 @@ class DetailViewController: UIViewController {
         query?.findObjectsInBackground({ [self] (results, error) in
                   if error != nil {
                  } else {
-                    // データは一つしかないが、形式的には配列
                     let menus = results as? [NCMBObject] ?? []
                     let menu = menus[0]
                     print(menu)

@@ -8,6 +8,7 @@
 import UIKit
 
 class CustomizeTableViewCell: UITableViewCell {
+    
     @IBOutlet private var customizeImageView: UIImageView!
     @IBOutlet private var customizeNameLabel: UILabel!
     @IBOutlet private var customCalorieLabel: UILabel!

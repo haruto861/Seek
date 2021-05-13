@@ -9,7 +9,6 @@ import UIKit
 import NCMB
 import NYXImagesKit
 
-// UIImageViewControllerの親クラスはUINavigationController
 class EditUserViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet var userImageView: UIImageView!
     @IBOutlet var  userNameTextField: UITextField!
@@ -45,17 +44,17 @@ class EditUserViewController: UIViewController, UITextFieldDelegate, UITextViewD
             }
         }
     }
-    // キーボードを出すコード
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
     }
-    
-    // キーボードを出すコード
+
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
         textView.resignFirstResponder()
         return true
     }
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
         
@@ -68,32 +67,26 @@ class EditUserViewController: UIViewController, UITextFieldDelegate, UITextViewD
         }
         file.saveInBackground { (error) in
             if error != nil {
-                print(error)
             } else {
                 self.userImageView.image = selectedImage
             }
         }
     }
-    @IBAction func selectedImage() {
 
-        // 画面下部から出てくるのはactionsheet
+    @IBAction func selectedImage() {
         let actionController = UIAlertController(title: "画像の選択", message: "選択してください", preferredStyle: .actionSheet)
-        // iPadでは必須　(ipadではsourceviewを指定しないとクラッシュする）
         actionController.popoverPresentationController?.sourceView=self.view
         let cameraAction = UIAlertAction(title: "カメラ", style: .default) { (action)
             in
-            // カメラ起動
             if UIImagePickerController.isSourceTypeAvailable(.camera) == true {
                 let picker = UIImagePickerController()
                 picker.sourceType = .camera
                 picker.delegate = self
                 self.present(picker, animated: true, completion: nil)
             } else {
-                print("この機種ではカメラは使用できません")
             }
         }
         let albumAction = UIAlertAction(title: "フォトライブラリ", style: .default) { (action) in
-            // アルバム起動
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) == true {
                 let picker = UIImagePickerController()
                 picker.sourceType = .photoLibrary
@@ -101,10 +94,8 @@ class EditUserViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 self.present(picker, animated: true, completion: nil)
                 
             } else {
-                print("この機種ではフォトライブラリは使用できません")
             }
         }
-        
         let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
             actionController.dismiss(animated: true, completion: nil)
 
@@ -112,14 +103,13 @@ class EditUserViewController: UIViewController, UITextFieldDelegate, UITextViewD
         actionController.addAction(cameraAction)
         actionController.addAction(albumAction)
         actionController.addAction(cancelAction)
-        // アラートを表示させる
         self.present(actionController, animated: true, completion: nil)
     }
-    // キャンセルボタンで前の画面に遷移
     
     @IBAction func closeEditViewController() {
         self.dismiss(animated: true, completion: nil)
     }
+
     @IBAction func saveUserInfo() {
         let user = NCMBUser.current()
         user?.setObject(userNameTextField.text, forKey: "userName") as? String ?? ""
@@ -131,7 +121,5 @@ class EditUserViewController: UIViewController, UITextFieldDelegate, UITextViewD
                 self.dismiss(animated: true, completion: nil)
             }
         })
-
     }
-
 }
