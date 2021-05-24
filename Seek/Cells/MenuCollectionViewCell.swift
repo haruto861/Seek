@@ -8,6 +8,7 @@
 import UIKit
 
 class MenuCollectionViewCell: UICollectionViewCell {
+    
     @IBOutlet var menuNameLabel: UILabel!
     @IBOutlet var menuImageView: UIImageView!
     var indexPath: IndexPath?

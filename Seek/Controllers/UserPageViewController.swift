@@ -27,6 +27,7 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
     var selectedIndex: IndexPath!
     var objectId: String!
     var blockUserIdArray = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         timeLineTableView.rowHeight = 188
@@ -36,20 +37,17 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
         userImageview.layer.masksToBounds = true
         self.timeLineTableView.dataSource = self
         self.timeLineTableView.delegate = self
-        // nibの登録
         let nib = UINib(nibName: "TimeLineTableViewCell", bundle: Bundle.main)
-        // reuseセルとして登録
         timeLineTableView.register(nib, forCellReuseIdentifier: "TimeLineTableViewCell")
         loadData()
         getBlockUser()
     }
-    // 表示されるセルの個数
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
-    // 表示されるセルの内容
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        //  UItableViewCell型に変換して代入
         selectedIndex = indexPath
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineTableViewCell") as? TimeLineTableViewCell else {
             abort()
@@ -65,11 +63,12 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.postUserNameLabel.text = user?.userName
         return cell
     }
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? TimeLineTableViewCell else { return }
-        // ShopTableViewCell.swiftで設定したメソッドを呼び出す
         cell.setCollectionViewDataSourceDelegate(dataSourceDelegate: self, forRow: indexPath.row)
     }
+
     override func viewWillAppear(_ animated: Bool) {
         if let user = NCMBUser.current() {
             userDisplayNameLabel.text = user.object(forKey: "displayName") as? String
@@ -89,27 +88,24 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
                 }
             }
         } else {
-            // NCMBUser.current()がnilだったとき
             let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)
             let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootNavigationController")
             UIApplication.shared.keyWindow?.rootViewController = rootViewController
-            // ログイン状態の保持
             let ud = UserDefaults.standard
             ud.set(false, forKey: "isLogin")
             ud.synchronize()
         }
     }
+
     @IBAction func showMenu() {
         let alertController = UIAlertController(title: "メニュー", message: "メニューを選択して下さい。", preferredStyle: .actionSheet)
         let signOutAction = UIAlertAction(title: "ログアウト", style: .default) { (action) in
             NCMBUser.logOutInBackground({ (error) in
                 if error != nil {
                 } else {
-                    // ログアウト成功
                     let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)
                     let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootNavigationController")
                     UIApplication.shared.keyWindow?.rootViewController = rootViewController
-                    // ログイン状態の保持
                     let ud = UserDefaults.standard
                     ud.set(false, forKey: "isLogin")
                     ud.synchronize()
@@ -119,28 +115,23 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
         let deleteAction = UIAlertAction(title: "退会", style: .default) { (action) in
             let alert = UIAlertController(title: "会員登録の解除", message: "本当に退会しますか？退会した場合、再度このアカウントをご利用頂くことができません。", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                // ユーザーのアクティブ状態をfalseに
                 if let user = NCMBUser.current() {
                     user.setObject(false, forKey: "active")
                     user.saveInBackground({ (error) in
                         if error != nil {
                         } else {
-                            // userのアクティブ状態を変更できたらログイン画面に移動
                             let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)
                             let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootNavigationController")
                             UIApplication.shared.keyWindow?.rootViewController = rootViewController
-                            // ログイン状態の保持
                             let ud = UserDefaults.standard
                             ud.set(false, forKey: "isLogin")
                             ud.synchronize()
                         }
                     })
                 } else {
-                    // userがnilだった場合ログイン画面に移動
                     let storyboard = UIStoryboard(name: "SignIn", bundle: Bundle.main)
                     let rootViewController = storyboard.instantiateViewController(withIdentifier: "RootNavigationController")
                     UIApplication.shared.keyWindow?.rootViewController = rootViewController
-                    // ログイン状態の保持
                     let ud = UserDefaults.standard
                     ud.set(false, forKey: "isLogin")
                     ud.synchronize()
@@ -161,20 +152,16 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
+
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        // 選択した投稿のobjectIdが自分のと異なっていた場合
         if posts[indexPath.row].user.objectId != NCMBUser.current()?.objectId {
             let reportButton: UITableViewRowAction = UITableViewRowAction(style: .normal, title: "報告") { (action, index) -> Void in
                 let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 let reportAction = UIAlertAction(title: "報告する", style: .destructive ){ (action) in
                     KRProgressHUD.showSuccess(withMessage: "この投稿を報告しました。ご協力ありがとうございました。")
-                    // 新たにクラスを作成する
                     let object = NCMBObject(className: "Report")
-                    // "reportId"に選択したセルのobjectIdをセットする
                     object?.setObject(self.posts[indexPath.row].objectId, forKey: "reportId")
-                    // "user"に自分自身のユーザーデータをセット
                     object?.setObject(NCMBUser.current(), forKey: "user")
-                    // それらを保存する
                     object?.saveInBackground({ (error) in
                         if error != nil {
                             KRProgressHUD.showError(withMessage: "エラーです。")
@@ -197,21 +184,15 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
                 let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                 let blockAction = UIAlertAction(title: "ブロックする", style: .destructive) { (action) in
                     KRProgressHUD.showSuccess(withMessage: "このユーザーをブロックしました。")
-                    // Blockのクラスを作成
                     let object = NCMBObject(className: "Block")
-                    // 選択されたセルのobjectIdを"blockuserId"にセットする
                     object?.setObject(self.posts[indexPath.row].user.objectId, forKey: "blockUserID")
-                    // 選択したセルのユーザーデータを"user"にセットする
                     object?.setObject(NCMBUser.current(), forKey: "user")
-                    // それらを保存する
                     object?.saveInBackground({ (error) in
                         if error != nil {
                             KRProgressHUD.showError(withMessage: "エラーです")
-                       
                         } else {
                             KRProgressHUD.dismiss()
                             tableView.deselectRow(at: indexPath, animated: true)
-                           // ここで③を読み込んでいる
                             self.getBlockUser()
                         }
                     })
@@ -265,72 +246,58 @@ class UserPageViewController: UIViewController, UITableViewDataSource, UITableVi
             return [deleteButton]
         }
     }
-// ③ ブロックしたユーザーを持ってくる
-func getBlockUser() {
-        // ブロッククラスに検索をかける
+
+    func getBlockUser() {
         let query = NCMBQuery(className: "Block")
-        // includeKeyでBlockの子クラスである会員情報を持ってきている
         query?.includeKey("user")
-        // ユーザーが自分と一致した場合
         query?.whereKey("user", equalTo: NCMBUser.current())
-        // データを検索
         query?.findObjectsInBackground({ (result, error) in
             if error != nil {
-                // エラーの処理
             } else {
-                // ブロックされたユーザーのIDが含まれる + removeall()は初期化していて、データの重複を防いでいる
                 self.blockUserIdArray.removeAll()
-                print(result)
                 for blockObject in result as? [NCMBObject] ?? [] {
-                    // この部分で①の配列にブロックユーザー情報が格納
-self.blockUserIdArray.append(blockObject.object(forKey: "blockUserID") as? String ?? "")
+                    self.blockUserIdArray.append(blockObject.object(forKey: "blockUserID") as? String ?? "")
                 }
             }
         })
         loadData()
     }
-// ②
+
     func loadData() {
-// ここにNCMBから値を持ってくるコードが書いてある前提
-    let query = NCMBQuery(className: "post")
-    query?.order(byDescending: "createDate")
-    query?.includeKey("userName")
+        let query = NCMBQuery(className: "post")
+        query?.order(byDescending: "createDate")
+        query?.includeKey("userName")
         query?.whereKey("userName", equalTo: NCMBUser.current())
-    query?.findObjectsInBackground({ (results, error) in
-        if error != nil {
-            print(error)
-        } else {
-            print(results)
-            self.posts = [Post]()
-            for text in results as? [NCMBObject] ?? [] {
-                guard  let user  = text.object(forKey: "userName") as?  NCMBUser else {
+        query?.findObjectsInBackground({ (results, error) in
+            if error != nil {
+            } else {
+                self.posts = [Post]()
+                for text in results as? [NCMBObject] ?? [] {
+                    guard let user  = text.object(forKey: "userName") as?  NCMBUser else {
                     return
-                }
-                user.userName = user.object(forKey: "userName") as? String ?? ""
-                let userModel = User(objectId: user.objectId, userName: user.userName)
-                self.menuName = text.object(forKey: "menuName") as? String ?? ""
-                // 初めにurlを取得して、kingfisherで引っ張ってくる
-                self.menuImageUrl = text.object(forKey: "menuImage") as? String ?? ""
-                // カスタマイズの画像urlも同様に取得
-                self.customImageUrl = text.object(forKey: "customImage") as? [String] ?? []
-                self.postedCustomizes = text.object(forKey: "toppings") as! [String]
-                self.prePostCalorie = text.object(forKey: "postCalorie") as? Int ?? 0
-                self.postCalorie = String(self.prePostCalorie)
-                self.prePostPrice = text.object(forKey: "postPrice") as? Int ?? 0
-                self.postPrice = String(self.prePostPrice)
-                self.objectId = text.object(forKey: "objectId") as? String ?? ""
-                //appendする時に、ブロックユーザーがnilであったらappendされるようにしている。
-                let post = Post(menuName: self.menuName, user: userModel, menuImage: self.menuImageUrl, totalPrice: self.postPrice, totalCalorie: self.postCalorie, createDate: text.createDate, toppings: self.postedCustomizes, customImage: self.customImageUrl, objectId: self.objectId)
-                if self.blockUserIdArray.firstIndex(of: post.user.objectId) == nil {
-                    self.posts.append(post)
+                    }
+                    user.userName = user.object(forKey: "userName") as? String ?? ""
+                    let userModel = User(objectId: user.objectId, userName: user.userName)
+                    self.menuName = text.object(forKey: "menuName") as? String ?? ""
+                    self.menuImageUrl = text.object(forKey: "menuImage") as? String ?? ""
+                    self.customImageUrl = text.object(forKey: "customImage") as? [String] ?? []
+                    self.postedCustomizes = text.object(forKey: "toppings") as! [String]
+                    self.prePostCalorie = text.object(forKey: "postCalorie") as? Int ?? 0
+                    self.postCalorie = String(self.prePostCalorie)
+                    self.prePostPrice = text.object(forKey: "postPrice") as? Int ?? 0
+                    self.postPrice = String(self.prePostPrice)
+                    self.objectId = text.object(forKey: "objectId") as? String ?? ""
+                    let post = Post(menuName: self.menuName, user: userModel, menuImage: self.menuImageUrl, totalPrice: self.postPrice, totalCalorie: self.postCalorie, createDate: text.createDate, toppings: self.postedCustomizes, customImage: self.customImageUrl, objectId: self.objectId)
+                    if self.blockUserIdArray.firstIndex(of: post.user.objectId) == nil {
+                        self.posts.append(post)
+                    }
                 }
             }
-        }
-        self.timeLineTableView.reloadData()
-    })
+            self.timeLineTableView.reloadData()
+        })
     }
-
 }
+
 extension UserPageViewController: UICollectionViewDataSource, UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return  postedCustomizes.count
